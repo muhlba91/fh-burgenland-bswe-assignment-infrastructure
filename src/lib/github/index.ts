@@ -50,7 +50,7 @@ const createRepository = (
       allowUpdateBranch: true,
       archived: false,
       archiveOnDestroy: !repository.deleteOnDestroy,
-      autoInit: false,
+      autoInit: true,
       deleteBranchOnMerge: true,
       hasDownloads: true,
       hasIssues: true,
