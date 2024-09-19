@@ -21,6 +21,7 @@ jobs:
         node-version: ["20"]
         stack:
           - dev
+          - ws2024
 
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
@@ -83,6 +84,7 @@ jobs:
         node-version: ["20"]
         stack:
           - dev
+          - ws2024
 
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4

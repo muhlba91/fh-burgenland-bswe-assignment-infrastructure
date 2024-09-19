@@ -1,0 +1,15 @@
+---
+teams: []
+repositories:
+  - name: api-specifications
+    service: api-specifications
+    teams: []
+    aws: false
+    pulumi: false
+    requiredChecks: []
+  - name: kubernetes-applications
+    service: kubernetes-applications
+    teams: []
+    aws: false
+    pulumi: false
+    requiredChecks: []
