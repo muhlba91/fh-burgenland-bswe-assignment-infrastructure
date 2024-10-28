@@ -5,8 +5,7 @@ on:
   pull_request:
 
 permissions:
-  id-token: write
-  contents: write
+  contents: read
 
 jobs:
   conform:
@@ -14,11 +13,15 @@ jobs:
     name: Conform
 
     steps:
+      - uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           fetch-depth: 0
 
-      - uses: siderolabs/conform@v0.1.0-alpha.27
+      - uses: siderolabs/conform@6380738b7fdfc68b208ce0674c4ac1ba314ba600 # v0.1.0-alpha.27
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -27,6 +30,10 @@ jobs:
     name: YAMLLint
 
     steps:
+      - uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           fetch-depth: 0
@@ -42,6 +49,10 @@ jobs:
         node-version: ["20"]
 
     steps:
+      - uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           fetch-depth: 0
@@ -49,7 +60,7 @@ jobs:
       - run: |
           corepack enable
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -66,6 +77,10 @@ jobs:
         node-version: ["20"]
 
     steps:
+      - uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           fetch-depth: 0
@@ -73,7 +88,7 @@ jobs:
       - run: |
           corepack enable
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -91,6 +106,10 @@ jobs:
         node-version: ["20"]
 
     steps:
+      - uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           fetch-depth: 0
@@ -98,7 +117,7 @@ jobs:
       - run: |
           corepack enable
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -128,6 +147,10 @@ jobs:
           - ws2024
 
     steps:
+      - uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
         with:
           fetch-depth: 0
@@ -135,11 +158,11 @@ jobs:
       - run: |
           corepack enable
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: ${{ matrix.node-version }}
 
-      - uses: hashicorp/vault-action@v3
+      - uses: hashicorp/vault-action@d1720f055e0635fd932a1d2a48f87a666a57906c # v3.0.0
         id: import-secrets
         with:
           method: jwt
@@ -153,13 +176,13 @@ jobs:
             github-fh-burgenland-bswe-assignment-infrastructure/data/aws identity_role_arn | AWS_IDENTITY_ROLE_ARN ;
             github-fh-burgenland-bswe-assignment-infrastructure/data/github token | GH_PAT_TOKEN
 
-      - uses: pulumi/auth-actions@v1
+      - uses: pulumi/auth-actions@80dec0d5e009a11565cbf87d9ef9103fc7d24198 # v1.0.0
         with:
           organization: dmuehlbachler-fh-burgenland
           requested-token-type: urn:pulumi:token-type:access_token:personal
           scope: user:dmuehlbachler-fh-burgenland
 
-      - uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4.0.2
         with:
           role-to-assume: ${{ env.AWS_IDENTITY_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
@@ -168,7 +191,7 @@ jobs:
           yarn install --immutable
           yarn build
 
-      - uses: pulumi/actions@v6
+      - uses: pulumi/actions@c7fad9e2f0b79653172b36538b8b34b3c0291952 # v6.0.0
         with:
           command: preview
           stack-name: ${{ matrix.stack }}
