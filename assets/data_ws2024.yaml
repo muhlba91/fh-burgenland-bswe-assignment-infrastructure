@@ -197,7 +197,10 @@ repositories:
       - group-h
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Conform
+      - YAMLLint
+      - checkstyle for Java
   - name: group-h-transactions
     service: transactions
     teams:
