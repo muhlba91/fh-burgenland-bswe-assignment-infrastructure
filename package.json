@@ -29,7 +29,7 @@
     "@pulumi/aws": "^6.51.1",
     "@pulumi/github": "^6.2.5",
     "@pulumi/pulumi": "^3.132.0",
-    "@pulumi/pulumiservice": "^0.26.0",
+    "@pulumi/pulumiservice": "^0.27.0",
     "@pulumi/random": "^4.16.4",
     "@pulumi/vault": "^6.3.0",
     "@pulumiverse/time": "^0.1.0",
