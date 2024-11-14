@@ -318,3 +318,51 @@ repositories:
     aws: false
     terraform: false
     requiredChecks: []
+  - name: group-aj-frontend
+    service: frontend
+    teams:
+      - group-a
+      - group-j
+    aws: false
+    terraform: false
+    requiredChecks: []
+  - name: group-bc-frontend
+    service: frontend
+    teams:
+      - group-b
+      - group-c
+    aws: false
+    terraform: false
+    requiredChecks: []
+  - name: group-di-frontend
+    service: frontend
+    teams:
+      - group-d
+      - group-i
+    aws: false
+    terraform: false
+    requiredChecks: []
+  - name: group-ef-frontend
+    service: frontend
+    teams:
+      - group-e
+      - group-f
+    aws: false
+    terraform: false
+    requiredChecks: []
+  - name: group-gl-frontend
+    service: frontend
+    teams:
+      - group-g
+      - group-l
+    aws: false
+    terraform: false
+    requiredChecks: []
+  - name: group-hk-frontend
+    service: frontend
+    teams:
+      - group-h
+      - group-k
+    aws: false
+    terraform: false
+    requiredChecks: []
