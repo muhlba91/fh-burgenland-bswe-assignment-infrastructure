@@ -86,7 +86,19 @@ repositories:
       - YAMLLint
   - name: kubernetes-applications
     service: kubernetes-applications
-    teams: []
+    teams:
+      - group-a
+      - group-b
+      - group-c
+      - group-d
+      - group-e
+      - group-f
+      - group-g
+      - group-h
+      - group-i
+      - group-j
+      - group-k
+      - group-l
     approvers: 2
     aws: false
     terraform: false
