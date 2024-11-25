@@ -8,7 +8,9 @@ repositories:
   - name: infrastructure-lifecycle
     service: infrastructure-lifecycle
     teams: []
-    requiredChecks: []
+    requiredChecks:
+      - Conform
+      - YAMLLint
   - name: test-repository
     service: accounts
     teams:
