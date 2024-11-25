@@ -5,6 +5,8 @@ teams:
     members:
       - muhlba91
 repositories:
+  - name: infrastructure-lifecycle
+    service: infrastructure-lifecycle
   - name: test-repository
     service: accounts
     teams:
