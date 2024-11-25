@@ -7,6 +7,8 @@ teams:
 repositories:
   - name: infrastructure-lifecycle
     service: infrastructure-lifecycle
+    teams: []
+    requiredChecks: []
   - name: test-repository
     service: accounts
     teams:
