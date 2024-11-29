@@ -225,7 +225,10 @@ repositories:
       - group-h
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Conform
+      - YAMLLint
+      - checkstyle for Java
   - name: group-i-accounts
     service: accounts
     teams:
