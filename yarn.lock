@@ -251,7 +251,6 @@ __metadata:
     "@pulumi/pulumi": "npm:^3.132.0"
     "@pulumi/pulumiservice": "npm:^0.27.0"
     "@pulumi/random": "npm:^4.16.4"
-    "@pulumi/vault": "npm:^6.3.0"
     "@pulumiverse/time": "npm:^0.1.0"
     "@types/node": "npm:^22.7.6"
     "@types/nunjucks": "npm:^3.2.6"
@@ -810,15 +809,6 @@ __metadata:
   dependencies:
     "@pulumi/pulumi": "npm:^3.136.0"
   checksum: 10c0/cb859edb91a0293c5e017904311c7a8be56db5bf941c653d25a08252be6f259d3fe87b54a7f69c6697249024cf8e8a40f198b0ae6014a13c92d59acdf57200fd
-  languageName: node
-  linkType: hard
-
-"@pulumi/vault@npm:^6.3.0":
-  version: 6.4.0
-  resolution: "@pulumi/vault@npm:6.4.0"
-  dependencies:
-    "@pulumi/pulumi": "npm:^3.136.0"
-  checksum: 10c0/fd48c372207e9cc91e270cbd8a79a714ca24c1cc44fee40c783ddce79cfd2979e43db10e27b44082443a4de58afc0c080f1bcf2289d71308782e5a27ae7ae776
   languageName: node
   linkType: hard
 
