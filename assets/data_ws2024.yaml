@@ -339,7 +339,7 @@ repositories:
     teams:
       - group-a
       - group-j
-    aws: false
+    aws: true
     terraform: false
     requiredChecks: []
   - name: group-bc-frontend
@@ -347,7 +347,7 @@ repositories:
     teams:
       - group-b
       - group-c
-    aws: false
+    aws: true
     terraform: false
     requiredChecks: []
   - name: group-di-frontend
@@ -355,7 +355,7 @@ repositories:
     teams:
       - group-d
       - group-i
-    aws: false
+    aws: true
     terraform: false
     requiredChecks: []
   - name: group-ef-frontend
@@ -363,7 +363,7 @@ repositories:
     teams:
       - group-e
       - group-f
-    aws: false
+    aws: true
     terraform: false
     requiredChecks: []
   - name: group-gl-frontend
@@ -371,7 +371,7 @@ repositories:
     teams:
       - group-g
       - group-l
-    aws: false
+    aws: true
     terraform: false
     requiredChecks: []
   - name: group-hk-frontend
@@ -379,6 +379,6 @@ repositories:
     teams:
       - group-h
       - group-k
-    aws: false
+    aws: true
     terraform: false
     requiredChecks: []
