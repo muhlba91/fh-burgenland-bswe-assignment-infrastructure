@@ -39,12 +39,12 @@ export const createRepositoryRulesets = (
         requiredStatusChecks:
           config.requiredChecks.length > 0
             ? {
-              requiredChecks: config.requiredChecks.map((check) => ({
-                context: check,
-                integrationId: 15368,
-              })),
-              strictRequiredStatusChecksPolicy: true,
-            }
+                requiredChecks: config.requiredChecks.map((check) => ({
+                  context: check,
+                  integrationId: 15368,
+                })),
+                strictRequiredStatusChecksPolicy: true,
+              }
             : undefined,
         update: false,
         updateAllowsFetchAndMerge: false,

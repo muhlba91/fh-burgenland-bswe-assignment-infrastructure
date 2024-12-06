@@ -1,6 +1,5 @@
 import * as aws from '@pulumi/aws';
 import { interpolate, Output } from '@pulumi/pulumi';
-import * as vault from '@pulumi/vault';
 
 import {
   awsDefaultRegion,
@@ -11,20 +10,17 @@ import {
 } from '../configuration';
 import { writeToGitHubActionsSecret } from '../util/github/secret';
 import { createRandomString } from '../util/random';
-import { writeToVault } from '../util/vault/secret';
 
 /**
  * Creates IAM for an AWS account.
  *
  * @param {string} repository the repository
  * @param {Output<string>} identityProviderArn the identity provider ARN
- * @param {vault.Mount} store the vault store
  * @returns {Output<string>} the IAM role ARN
  */
 export const createAccountIam = (
   repository: Output<string>,
   identityProviderArn: string,
-  store: vault.Mount,
 ): Output<string> => {
   const labels = {
     ...commonLabels,
@@ -220,17 +216,6 @@ export const createAccountIam = (
       repo,
       'AWS_REGION',
       Output.create(awsDefaultRegion),
-    );
-
-    writeToVault(
-      `aws-${repo}`,
-      ciRole.arn.apply((ciRoleArn) =>
-        JSON.stringify({
-          identity_role_arn: ciRoleArn,
-          region: awsDefaultRegion,
-        }),
-      ),
-      store,
     );
   });
 
