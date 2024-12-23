@@ -306,7 +306,12 @@ repositories:
       - group-j
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - CheckstyleMain
+      - Test
+      - bootjar
+      - Spectral Linter
+      - YAMLLint
   - name: group-bc-broker
     service: broker
     teams:
