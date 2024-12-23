@@ -346,7 +346,10 @@ repositories:
       - group-k
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Conform
+      - YAMLLint
+      - Checkstyle for Java
   - name: group-aj-frontend
     service: frontend
     teams:
