@@ -322,7 +322,10 @@ repositories:
       - group-c
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Validate commit
+      - Validate Java code
+      - Lint Dockerfile
   - name: group-di-broker
     service: broker
     teams:
