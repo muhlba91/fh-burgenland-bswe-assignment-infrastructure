@@ -366,6 +366,7 @@ repositories:
       - Conform
       - YAMLLint
       - Checkstyle for Java
+      - Run Unit Tests
   - name: group-aj-frontend
     service: frontend
     teams:
