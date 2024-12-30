@@ -287,7 +287,12 @@ repositories:
       - group-k
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Unit Tests
+      - Conform
+      - Spectral Linter
+      - YAMLLint
+      - Build and Package Application
   - name: group-l-accounts
     service: accounts
     teams:
