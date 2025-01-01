@@ -64,6 +64,20 @@ teams:
 repositories:
   - name: api-specifications
     service: api-specifications
+  - name: swm2-ws2024-group-l-accounts
+    service: accounts
+    branch_protection:
+      branches:
+        - name: main
+          protection:
+            required_status_checks:
+              strict: true
+              contexts:
+                - build
+                - tests
+            enforce_admins: true
+            required_pull_request_reviews:
+              required_approving_review_count: 2
     teams:
       - group-a
       - group-b
