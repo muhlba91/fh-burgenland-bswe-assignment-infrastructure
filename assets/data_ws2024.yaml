@@ -261,7 +261,12 @@ repositories:
       - group-j
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - YAMLLint
+      - Spectral Linter
+      - CheckstyleMain
+      - Test
+      - Bootjar
   - name: group-j-transactions
     service: transactions
     teams:
