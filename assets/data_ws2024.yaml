@@ -273,7 +273,12 @@ repositories:
       - group-j
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - YAMLLint
+      - Spectral Linter
+      - CheckstyleMain
+      - Test
+      - Bootjar
   - name: group-k-accounts
     service: accounts
     teams:
