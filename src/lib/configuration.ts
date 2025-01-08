@@ -13,6 +13,7 @@ export const teams = data.teams;
 export const githubHandle = 'muhlba91';
 
 export const awsDefaultRegion = 'eu-west-1';
+export const awsAccountId = '061039787254';
 
 export const globalName = 'swm2';
 export const commonLabels = {
