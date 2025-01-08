@@ -186,6 +186,12 @@ export const createAccountIam = (
                     's3:UploadPart',
                     's3:UploadPartCopy',
                     's3:WriteGetObjectResponse',
+                    's3:PutBucketObjectLockConfiguration',
+                    's3:PutEncryptionConfiguration',
+                    's3:PutIntelligentTieringConfiguration',
+                    's3:PutInventoryConfiguration',
+                    's3:PutLifecycleConfiguration',
+                    's3:GetReplicationConfiguration',
                   ],
                   resources: [
                     `arn:aws:s3:::bswe-${globalName}-${environment}-*`,
