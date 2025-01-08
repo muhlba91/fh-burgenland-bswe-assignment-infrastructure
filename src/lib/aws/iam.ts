@@ -145,6 +145,7 @@ export const createAccountIam = (
                     's3:ListBucketInventoryConfigurations',
                     's3:ListBucketMetricsConfigurations',
                     's3:ListBuckets',
+                    's3:ListBucket',
                     's3:ListDirectoryBuckets',
                     's3:ListMultipartUploads',
                     's3:ListObjects',
