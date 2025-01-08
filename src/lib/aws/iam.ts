@@ -106,6 +106,7 @@ export const createAccountIam = (
                     's3:DeleteObjects',
                     's3:DeleteObjectTagging',
                     's3:DeletePublicAccessBlock',
+                    's3:GetAccelerateConfiguration',
                     's3:GetBucketAccelerateConfiguration',
                     's3:GetBucketAcl',
                     's3:GetBucketAnalyticsConfiguration',
