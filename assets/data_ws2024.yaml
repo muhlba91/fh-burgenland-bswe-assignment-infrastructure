@@ -291,6 +291,8 @@ repositories:
       - Spectral Linter
       - YAMLLint
       - Build and Package Application
+      - Build and Test with Docker Compose
+      - Build and Push Docker Image
   - name: group-k-transactions
     service: transactions
     teams:
@@ -303,6 +305,8 @@ repositories:
       - Spectral Linter
       - YAMLLint
       - Build and Package Application
+      - Build and Test with Docker Compose
+      - Build and Push Docker Image
   - name: group-l-accounts
     service: accounts
     teams:
