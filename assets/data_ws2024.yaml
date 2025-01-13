@@ -155,7 +155,10 @@ repositories:
       - group-c
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Validate commit
+      - Validate Java code
+      - Lint Dockerfile
   - name: group-c-transactions
     service: transactions
     teams:
