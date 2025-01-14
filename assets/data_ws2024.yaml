@@ -327,7 +327,11 @@ repositories:
       - group-l
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Conform
+      - YAMLLint
+      - Unit Tests
+      - Build and Package Application
   - name: group-aj-broker
     service: broker
     teams:
