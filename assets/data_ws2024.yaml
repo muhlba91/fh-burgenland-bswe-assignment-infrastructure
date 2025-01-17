@@ -409,7 +409,10 @@ repositories:
       - group-j
     aws: true
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - InstallAndBuild
+      - Lint
+      - Test
   - name: group-bc-frontend
     service: frontend
     teams:
