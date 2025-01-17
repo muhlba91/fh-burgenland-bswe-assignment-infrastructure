@@ -111,59 +111,54 @@ repositories:
       - group-a
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - CheckstyleMain
-    #   - Test
-    #   - bootjar
-    #   - Spectral Linter
-    #   - YAMLLint
+    requiredChecks:
+      - CheckstyleMain
+      - Test
+      - bootjar
+      - Spectral Linter
+      - YAMLLint
   - name: group-a-transactions
     service: transactions
     teams:
       - group-a
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - CheckstyleMain
-    #   - Test
-    #   - bootjar
-    #   - Spectral Linter
-    #   - YAMLLint
+    requiredChecks:
+      - CheckstyleMain
+      - Test
+      - bootjar
+      - Spectral Linter
+      - YAMLLint
   - name: group-b-accounts
     service: accounts
     teams:
       - group-b
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Validate commit
-    #   - Validate Java code
-    #   - Lint Dockerfile
+    requiredChecks:
+      - Validate commit
+      - Validate Java code
+      - Lint Dockerfile
   - name: group-b-transactions
     service: transactions
     teams:
       - group-b
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Validate commit
-    #   - Validate Java code
-    #   - Lint Dockerfile
+    requiredChecks:
+      - Validate commit
+      - Validate Java code
+      - Lint Dockerfile
   - name: group-c-accounts
     service: accounts
     teams:
       - group-c
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Validate commit
-    #   - Validate Java code
-    #   - Lint Dockerfile
+    requiredChecks:
+      - Validate commit
+      - Validate Java code
+      - Lint Dockerfile
   - name: group-c-transactions
     service: transactions
     teams:
@@ -233,24 +228,22 @@ repositories:
       - group-h
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Conform
-    #   - YAMLLint
-    #   - checkstyle for Java
-    #   - Unit Tests
+    requiredChecks:
+      - Conform
+      - YAMLLint
+      - checkstyle for Java
+      - Unit Tests
   - name: group-h-transactions
     service: transactions
     teams:
       - group-h
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Conform
-    #   - YAMLLint
-    #   - checkstyle for Java
-    #   - Unit Tests
+    requiredChecks:
+      - Conform
+      - YAMLLint
+      - checkstyle for Java
+      - Unit Tests
   - name: group-i-accounts
     service: accounts
     teams:
@@ -271,68 +264,63 @@ repositories:
       - group-j
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - YAMLLint
-    #   - Spectral Linter
-    #   - CheckstyleMain
-    #   - Test
-    #   - Bootjar
+    requiredChecks:
+      - YAMLLint
+      - Spectral Linter
+      - CheckstyleMain
+      - Test
+      - Bootjar
   - name: group-j-transactions
     service: transactions
     teams:
       - group-j
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - YAMLLint
-    #   - Spectral Linter
-    #   - CheckstyleMain
-    #   - Test
-    #   - Bootjar
+    requiredChecks:
+      - YAMLLint
+      - Spectral Linter
+      - CheckstyleMain
+      - Test
+      - Bootjar
   - name: group-k-accounts
     service: accounts
     teams:
       - group-k
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Unit Tests
-    #   - Conform
-    #   - Spectral Linter
-    #   - YAMLLint
-    #   - Build and Package Application
-    #   - Build and Test with Docker Compose
-    #   - Build and Push Docker Image
+    requiredChecks:
+      - Unit Tests
+      - Conform
+      - Spectral Linter
+      - YAMLLint
+      - Build and Package Application
+      - Build and Test with Docker Compose
+      - Build and Push Docker Image
   - name: group-k-transactions
     service: transactions
     teams:
       - group-k
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Unit Tests
-    #   - Conform
-    #   - Spectral Linter
-    #   - YAMLLint
-    #   - Build and Package Application
-    #   - Build and Test with Docker Compose
-    #   - Build and Push Docker Image
+    requiredChecks:
+      - Unit Tests
+      - Conform
+      - Spectral Linter
+      - YAMLLint
+      - Build and Package Application
+      - Build and Test with Docker Compose
+      - Build and Push Docker Image
   - name: group-l-accounts
     service: accounts
     teams:
       - group-l
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Conform
-    #   - YAMLLint
-    #   - Unit Tests
-    #   - Build and Package Application
+    requiredChecks:
+      - Conform
+      - YAMLLint
+      - Unit Tests
+      - Build and Package Application
   - name: group-l-transactions
     service: transactions
     teams:
@@ -347,13 +335,12 @@ repositories:
       - group-j
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - CheckstyleMain
-    #   - Test
-    #   - bootjar
-    #   - Spectral Linter
-    #   - YAMLLint
+    requiredChecks:
+      - CheckstyleMain
+      - Test
+      - bootjar
+      - Spectral Linter
+      - YAMLLint
   - name: group-bc-broker
     service: broker
     teams:
@@ -361,11 +348,10 @@ repositories:
       - group-c
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Validate commit
-    #   - Validate Java code
-    #   - Lint Dockerfile
+    requiredChecks:
+      - Validate commit
+      - Validate Java code
+      - Lint Dockerfile
   - name: group-di-broker
     service: broker
     teams:
@@ -397,11 +383,10 @@ repositories:
       - group-k
     aws: false
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Conform
-    #   - YAMLLint
-    #   - Checkstyle for Java
+    requiredChecks:
+      - Conform
+      - YAMLLint
+      - Checkstyle for Java
   - name: group-aj-frontend
     service: frontend
     teams:
@@ -449,8 +434,7 @@ repositories:
       - group-k
     aws: true
     terraform: false
-    requiredChecks: []
-    # requiredChecks:
-    #   - Conform
-    #   - YAMLLint
-    #   - AngularLint
+    requiredChecks:
+      - Conform
+      - YAMLLint
+      - AngularLint
