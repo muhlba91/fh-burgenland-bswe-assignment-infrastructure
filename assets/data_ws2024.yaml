@@ -165,7 +165,10 @@ repositories:
       - group-c
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Validate commit
+      - Validate Java code
+      - Lint Dockerfile
   - name: group-d-accounts
     service: accounts
     teams:
