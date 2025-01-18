@@ -447,3 +447,4 @@ repositories:
       - Conform
       - YAMLLint
       - AngularLint
+      - Angular Tests
