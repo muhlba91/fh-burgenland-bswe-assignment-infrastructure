@@ -408,7 +408,10 @@ repositories:
       - group-c
     aws: true
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Validate commit
+      - Lint and test
+      - Scan the SBOM
   - name: group-di-frontend
     service: frontend
     teams:
