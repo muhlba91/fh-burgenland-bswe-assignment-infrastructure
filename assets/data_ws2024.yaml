@@ -217,7 +217,14 @@ repositories:
       - group-g
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Unit Tests
+      - Build Jar File
+      - Hadolint
+      - Container
+      - Checkstyle
+      - YAMLLint
+      - Spectral Linter
   - name: group-g-transactions
     service: transactions
     teams:
