@@ -203,7 +203,13 @@ repositories:
       - group-f
     aws: false
     terraform: false
-    requiredChecks: []
+    requiredChecks:
+      - Conform
+      - Unit Tests
+      - Check Code
+      - Lint Dockerfile
+      - Build Jar File
+      - Container
   - name: group-f-transactions
     service: transactions
     teams:
