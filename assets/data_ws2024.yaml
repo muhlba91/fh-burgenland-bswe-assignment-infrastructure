@@ -332,6 +332,7 @@ repositories:
       - YAMLLint
       - Unit Tests
       - Build and Package Application
+
   - name: group-aj-broker
     service: broker
     teams:
