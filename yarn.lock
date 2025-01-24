@@ -724,12 +724,12 @@ __metadata:
   linkType: hard
 
 "@pulumi/aws@npm:^6.51.1":
-  version: 6.66.3
-  resolution: "@pulumi/aws@npm:6.66.3"
+  version: 6.67.0
+  resolution: "@pulumi/aws@npm:6.67.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.142.0"
     mime: "npm:^2.0.0"
-  checksum: 10c0/c16cbc682c2e66aadc11fc43e41c9b298bd3f96c0d0b7a2ee7899992fca338917c868acf7189e4a9d4c5f48d9d592373052a924019518af25454e73d59a573f4
+  checksum: 10c0/f28d4605dbfa6796859ba6e9042fda2804c8b4a6a005dc4fd7cd72f6017592b42b42afbe92383ed6c553ec97dddcd31b2c8a7f5b264c6f3e36554f71700b9f4c
   languageName: node
   linkType: hard
 
@@ -743,8 +743,8 @@ __metadata:
   linkType: hard
 
 "@pulumi/pulumi@npm:^3.0.0, @pulumi/pulumi@npm:^3.132.0, @pulumi/pulumi@npm:^3.142.0":
-  version: 3.146.0
-  resolution: "@pulumi/pulumi@npm:3.146.0"
+  version: 3.147.0
+  resolution: "@pulumi/pulumi@npm:3.147.0"
   dependencies:
     "@grpc/grpc-js": "npm:^1.10.1"
     "@logdna/tail-file": "npm:^2.0.6"
@@ -784,7 +784,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: 10c0/432a4df8ef70a4bcddf7285ba5e90782ba20aad794340fe53742cc97c6780f8f65aaa63af44bf609a478f086687119f8948b7b30f34995d741c4fec671b2f8bf
+  checksum: 10c0/a77377fbb915c2b965c9a347f8517a5d04606a74c3303bde73789e403d805590fa40390d362f07391f7232d554b6910c99830c9d138943a349482e26ffcfb760
   languageName: node
   linkType: hard
 
@@ -1041,11 +1041,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>=13.7.0, @types/node@npm:^22.7.6":
-  version: 22.10.7
-  resolution: "@types/node@npm:22.10.7"
+  version: 22.10.10
+  resolution: "@types/node@npm:22.10.10"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: 10c0/c941b4689dfc4044b64a5f601306cbcb0c7210be853ba378a5dd44137898c45accedd796ee002ad9407024cac7ecaf5049304951cb1d80ce3d7cebbbae56f20e
+  checksum: 10c0/3425772d4513cd5dbdd87c00acda088113c03a97445f84f6a89744c60a66990b56c9d3a7213d09d57b6b944ae8ff45f985565e0c1846726112588e33a22dd12b
   languageName: node
   linkType: hard
 
