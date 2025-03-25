@@ -176,7 +176,7 @@ jobs:
             github-fh-burgenland-bswe-assignment-infrastructure/data/aws identity_role_arn | AWS_IDENTITY_ROLE_ARN ;
             github-fh-burgenland-bswe-assignment-infrastructure/data/github token | GH_PAT_TOKEN
 
-      - uses: pulumi/auth-actions@80dec0d5e009a11565cbf87d9ef9103fc7d24198 # v1.0.0
+      - uses: pulumi/auth-actions@1c89817aab0c66407723cdef72b05266e7376640 # v1.0.1
         with:
           organization: dmuehlbachler-fh-burgenland
           requested-token-type: urn:pulumi:token-type:access_token:personal
