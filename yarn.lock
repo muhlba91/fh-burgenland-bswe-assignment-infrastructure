@@ -796,11 +796,11 @@ __metadata:
   linkType: hard
 
 "@pulumi/pulumiservice@npm:^0.29.0":
-  version: 0.29.1
-  resolution: "@pulumi/pulumiservice@npm:0.29.1"
+  version: 0.29.2
+  resolution: "@pulumi/pulumiservice@npm:0.29.2"
   dependencies:
     "@pulumi/pulumi": "npm:^3.0.0"
-  checksum: 10c0/2efc4ffc570bd0326b6814e3a28a0d606095b97d658c370828cf69aed954754b10c9d9632b5e0ccfa081dd85c27670ba650999af643ea3a5567203b6656ed30a
+  checksum: 10c0/249b589a4b58b45add1c69caa0eaffed5a373079e0020b0199c1eb9cb34b4deb44abd83e769ea00b09145ac314b5d5b74b846775f039ce13318edaf866224ace
   languageName: node
   linkType: hard
 
