@@ -24,7 +24,7 @@
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.9.2",
   "dependencies": {
     "@pulumi/aws": "^6.51.1",
     "@pulumi/github": "^6.2.5",
