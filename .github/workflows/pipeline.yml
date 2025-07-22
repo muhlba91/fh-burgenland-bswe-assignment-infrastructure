@@ -20,7 +20,7 @@ jobs:
     strategy:
       max-parallel: 12
       matrix:
-        node-version: ["20"]
+        node-version: ["24"]
         stack:
           - dev
           - ws2024
@@ -90,7 +90,7 @@ jobs:
     strategy:
       max-parallel: 12
       matrix:
-        node-version: ["20"]
+        node-version: ["24"]
         stack:
           - dev
           - ws2024
