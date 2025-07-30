@@ -1,0 +1,25 @@
+---
+teams:
+  - name: group-dmuehlbachler
+    members:
+      - muhlba91
+repositories:
+  - name: api-specifications
+    service: api-specifications
+    teams: []
+    approvers: 2
+    aws: false
+    terraform: false
+    requiredChecks:
+      - Conform
+      - Spectral Linter
+      - YAMLLint
+  - name: kubernetes-applications
+    service: kubernetes-applications
+    teams: []
+    approvers: 2
+    aws: false
+    terraform: false
+    requiredChecks:
+      - Conform
+      - YAMLLint

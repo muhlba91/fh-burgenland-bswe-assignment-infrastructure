@@ -1,6 +1,6 @@
 #!/bin/bash
 
-YEAR_IDENTIFIER="ws2024"
+YEAR_IDENTIFIER="ws2025"
 IDENTIFIERS="a b c d e f g h i j k l"
 MATCHED_GROUPS="aj bc di ef gl hk"
 
