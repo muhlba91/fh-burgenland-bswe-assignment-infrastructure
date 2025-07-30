@@ -70,6 +70,7 @@ export const createRepositoryRulesets = (
     },
     {
       dependsOn: [repository],
+      retainOnDelete: !config.deleteOnDestroy,
     },
   );
 };
