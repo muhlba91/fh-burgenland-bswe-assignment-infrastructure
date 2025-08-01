@@ -272,7 +272,7 @@ __metadata:
     "@pulumi/aws": "npm:^7.0.0"
     "@pulumi/github": "npm:^6.2.5"
     "@pulumi/pulumi": "npm:^3.132.0"
-    "@pulumi/pulumiservice": "npm:^0.30.0"
+    "@pulumi/pulumiservice": "npm:^0.31.0"
     "@pulumi/random": "npm:^4.16.4"
     "@pulumiverse/time": "npm:^0.1.0"
     "@types/node": "npm:^22.7.6"
@@ -806,12 +806,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pulumi/pulumiservice@npm:^0.30.0":
-  version: 0.30.0
-  resolution: "@pulumi/pulumiservice@npm:0.30.0"
+"@pulumi/pulumiservice@npm:^0.31.0":
+  version: 0.31.0
+  resolution: "@pulumi/pulumiservice@npm:0.31.0"
   dependencies:
     "@pulumi/pulumi": "npm:^3.0.0"
-  checksum: 10c0/4ab2d3cc005a9a4076c7f43c59758344a2a0298c31717a6e60a9c752ac65c644ef1723e959393e0ec59036014f03f71ad9a6332b7e347dd145d18be2d8fd416e
+  checksum: 10c0/87b49506339c119e4f4a671e8bf096758a55e74d086eed43c3970216e16e3b6cac7e145f240c67049c7b216a84773a6a0c3d0f82d98a8286acecdc39d4626bc3
   languageName: node
   linkType: hard
 
