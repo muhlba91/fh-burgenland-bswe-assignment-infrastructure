@@ -1,49 +1,71 @@
+import * as github from '@pulumi/github';
+import { Output } from '@pulumi/pulumi';
 import * as harbor from '@pulumiverse/harbor';
 
-import { TeamConfig } from '../../model/config/team';
 import { StringMap } from '../../model/map';
-import { environment, globalName, teams } from '../configuration';
+import { repositories } from '../configuration';
 
 /**
  * Creates all Harbor projects.
  *
+ * @param {StringMap<github.Repository>} githubRepositories the GitHub repositories
  * @param {StringMap<harbor.Group>} groups the Harbor groups
- * @returns {StringMap<harbor.Project>} the configured projects
+ * @returns {StringMap<Output<harbor.Project>>} the configured projects
  */
 export const createProjects = (
+  githubRepositories: StringMap<github.Repository>,
   groups: StringMap<harbor.Group>,
-): StringMap<harbor.Project> =>
+): StringMap<Output<harbor.Project>> =>
   Object.fromEntries(
-    teams.map((team) => [team.name, createProject(team, groups)]),
+    repositories
+      .filter((repo) => repo.harbor)
+      .map((repo) => [
+        repo.name,
+        createProject(githubRepositories[repo.name].name, repo.teams, groups),
+      ]),
   );
 
 /**
  * Creates a Harbor project.
  *
- * @param {TeamConfig} team the team configuration
+ * @param {Output<string>} repository the GitHub repository
+ * @param {readonly string[]} teams the team names
  * @param {StringMap<harbor.Group>} groups the Harbor groups
- * @returns {harbor.Project} the project
+ * @returns {Output<harbor.Project>} the project
  */
 const createProject = (
-  team: TeamConfig,
+  repository: Output<string>,
+  teams: readonly string[],
   groups: StringMap<harbor.Group>,
-): harbor.Project => {
-  const harborProject = new harbor.Project(`harbor-project-${team.name}`, {
-    name: `${globalName}-${environment}-${team.name}`,
-    public: false,
-    storageQuota: 15,
-    autoSbomGeneration: true,
-    vulnerabilityScanning: true,
-    forceDestroy: true,
-  });
+): Output<harbor.Project> => {
+  const harborProject = repository.apply(
+    (repo) =>
+      new harbor.Project(`harbor-project-${repo}`, {
+        name: repo,
+        public: false,
+        storageQuota: 10,
+        autoSbomGeneration: true,
+        vulnerabilityScanning: true,
+        forceDestroy: true,
+      }),
+  );
 
-  new harbor.ProjectMemberGroup(`harbor-project-member-group-${team.name}`, {
-    projectId: harborProject.id,
-    type: 'oidc',
-    role: 'maintainer',
-    groupName: groups[team.name].groupName,
-  });
-  // TODO: add joining group
+  repository.apply((repo) =>
+    teams.forEach(
+      (team) =>
+        new harbor.ProjectMemberGroup(
+          `harbor-project-member-group-${repo}-${team}`,
+          {
+            projectId: harborProject.id,
+            type: 'oidc',
+            role: 'maintainer',
+            groupName: groups[team].groupName,
+          },
+        ),
+    ),
+  );
+
+  // TODO: pull-only access for other teams
 
   return harborProject;
 };

@@ -19,4 +19,5 @@ repositories:
     deleteOnDestroy: true
     aws: false
     terraform: false
+    harbor: false
     requiredChecks: []

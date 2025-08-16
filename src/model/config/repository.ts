@@ -10,5 +10,6 @@ export interface RepositoryConfig {
   readonly aws: boolean;
   readonly terraform: boolean;
   readonly pulumi: boolean;
+  readonly harbor: boolean;
   readonly requiredChecks: readonly string[];
 }

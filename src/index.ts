@@ -8,6 +8,7 @@ import { createTeams } from './lib/github/team';
 import { createGroups } from './lib/harbor/group';
 import { configureHarborAuth } from './lib/harbor/oidc';
 import { createProjects } from './lib/harbor/project';
+import { configureHarborRobotAccounts } from './lib/harbor/robot';
 import { configureTerraform } from './lib/pulumi';
 import { StringMap } from './model/map';
 
@@ -19,14 +20,18 @@ export = async () => {
   // harbor configuration
   configureHarborAuth();
   const harborGroups = createGroups(githubTeams);
-  const harborProjects = createProjects(harborGroups);
+  const harborProjects = createProjects(githubRepositories, harborGroups);
 
   // terraform and aws integrations
   let terraform: StringMap<Output<string>> = {};
   let aws: StringMap<Output<string>> = {};
+  let harborRobotAccounts: StringMap<Output<string>> = {};
   terraform = configureTerraform();
   aws = await configureAwsAccounts(githubRepositories);
-  // TODO: add harbor robot accounts
+  harborRobotAccounts = configureHarborRobotAccounts(
+    harborProjects,
+    githubRepositories,
+  );
 
   return {
     aws: aws,
@@ -35,6 +40,9 @@ export = async () => {
     repositories: Object.values(githubRepositories).map((repo) => repo.name),
     harbor: {
       projects: Object.values(harborProjects).map((project) => project.name),
+      robotAccounts: Object.values(harborRobotAccounts).map(
+        (account) => account,
+      ),
     },
   };
 };
