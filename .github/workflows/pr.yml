@@ -174,7 +174,11 @@ jobs:
           secrets: |
             github-fh-burgenland-bswe-assignment-infrastructure/data/aws region | AWS_REGION ;
             github-fh-burgenland-bswe-assignment-infrastructure/data/aws identity_role_arn | AWS_IDENTITY_ROLE_ARN ;
-            github-fh-burgenland-bswe-assignment-infrastructure/data/github token | GH_PAT_TOKEN
+            github-fh-burgenland-bswe-assignment-infrastructure/data/github token | GH_PAT_TOKEN ;
+            github-fh-burgenland-bswe-assignment-infrastructure/data/harbor url | HARBOR_URL ;
+            github-fh-burgenland-bswe-assignment-infrastructure/data/harbor username | HARBOR_USERNAME ;
+            github-fh-burgenland-bswe-assignment-infrastructure/data/harbor password | HARBOR_PASSWORD ;
+            github-fh-burgenland-bswe-assignment-infrastructure/data/harbor dex_client_secret | DEX_HARBOR_CLIENT_SECRET
 
       - uses: pulumi/auth-actions@1c89817aab0c66407723cdef72b05266e7376640 # v1.0.1
         with:

@@ -6,6 +6,7 @@ import { parseDataFromFile } from './util/data';
 export const environment = getStack();
 
 export const githubOrganisation = github.config.owner;
+
 const data = parseDataFromFile(`./assets/data_${environment}.yaml`);
 export const repositories = data.repositories;
 export const teams = data.teams;
