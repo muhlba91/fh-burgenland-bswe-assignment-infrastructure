@@ -4,7 +4,7 @@
 export interface RepositoryConfig {
   readonly name: string;
   readonly service: string;
-  readonly teams: readonly string[];
+  readonly teams: readonly RepositoryTeamConfig[];
   readonly approvers?: number;
   readonly deleteOnDestroy?: boolean;
   readonly aws: boolean;
@@ -12,4 +12,12 @@ export interface RepositoryConfig {
   readonly pulumi: boolean;
   readonly harbor: boolean;
   readonly requiredChecks: readonly string[];
+}
+
+/**
+ * Defines ra epository team config.
+ */
+export interface RepositoryTeamConfig {
+  readonly name: string;
+  readonly role: string;
 }

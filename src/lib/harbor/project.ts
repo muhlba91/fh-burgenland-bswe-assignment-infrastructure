@@ -2,6 +2,7 @@ import * as github from '@pulumi/github';
 import { Output } from '@pulumi/pulumi';
 import * as harbor from '@pulumiverse/harbor';
 
+import { RepositoryTeamConfig } from '../../model/config/repository';
 import { StringMap } from '../../model/map';
 import { repositories } from '../configuration';
 
@@ -29,13 +30,13 @@ export const createProjects = (
  * Creates a Harbor project.
  *
  * @param {Output<string>} repository the GitHub repository
- * @param {readonly string[]} teams the team names
+ * @param {readonly RepositoryTeamConfig[]} teams the team names
  * @param {StringMap<harbor.Group>} groups the Harbor groups
  * @returns {Output<harbor.Project>} the project
  */
 const createProject = (
   repository: Output<string>,
-  teams: readonly string[],
+  teams: readonly RepositoryTeamConfig[],
   groups: StringMap<harbor.Group>,
 ): Output<harbor.Project> => {
   const harborProject = repository.apply(
@@ -58,8 +59,8 @@ const createProject = (
           {
             projectId: harborProject.id,
             type: 'oidc',
-            role: 'maintainer',
-            groupName: groups[team].groupName,
+            role: repositoryRoleToHarborRole(team.role),
+            groupName: groups[team.name].groupName,
           },
         ),
     ),
@@ -68,4 +69,19 @@ const createProject = (
   // TODO: pull-only access for other teams
 
   return harborProject;
+};
+
+/**
+ * Maps a repository role to a Harbor role.
+ *
+ * @param role the repository role
+ * @returns the corresponding Harbor role
+ */
+const repositoryRoleToHarborRole = (role: string): string => {
+  switch (role) {
+    case 'developer':
+      return 'maintainer';
+    default:
+      return 'limitedGuest';
+  }
 };

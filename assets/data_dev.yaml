@@ -14,7 +14,8 @@ repositories:
   - name: test-repository
     service: accounts
     teams:
-      - dmuehlbachler
+      - name: dmuehlbachler
+        role: developer
     approvers: 2
     deleteOnDestroy: true
     aws: false
