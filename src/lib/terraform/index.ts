@@ -7,7 +7,6 @@ import { environment, repositories } from '../configuration';
 /**
  * Creates all Pulumi related infrastructure.
  *
- * @param {vault.Mount} store the vault store
  * @returns {StringMap<Output<string>>} the repositories and their Pulumi access tokens
  */
 export const configurePulumi = (): StringMap<Output<string>> => {

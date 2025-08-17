@@ -46,6 +46,10 @@ To successfully run, and configure the Pulumi plugins, you need to set a list of
 - `PULUMI_ACCESS_TOKEN`: the Pulumi access token
 - `VAULT_ADDR`: the Vault address
 - `VAULT_TOKEN`: the Vault token
+- `HARBOR_URL`: the Harbor URL
+- `HARBOR_USERNAME`: the Harbor username
+- `HARBOR_PASSWORD`: the Harbor password
+- `DEX_HARBOR_CLIENT_SECRET`: the client secret in Dex for Harbor
 
 ---
 
@@ -71,12 +75,15 @@ repositories:
   - name: name
     service: service # the service name
     teams: # provides access to the repository
-      - team-a
-      - team-b
+      - name: team-a
+        role: developer
+      - name: team-b
+        role: viewer
     approvers: 1 # the number of required approvers (optional, default: 1)
     deleteOnDestroy: false # deletes the repository on stack destroy (optional, default: false)
     aws: false # creates and stores an AWS access key
     terraform: false # creates a Terraform backend bucket
+    harbor: false # creates a Harbor project and robot accounts
     requiredChecks: [] # sets required checks for the repository
 ```
 
@@ -86,11 +93,12 @@ repositories:
 
 The following outputs are available after the stack has been created:
 
-- `vault`: the Vault secret path
 - `aws`: a map containing the repositories with AWS access and their role ARN for authentication
 - `terraform`: a map containing the repositories with Terraform backend bucket information
 - `teams`: a list of all created teams
 - `repositories`: a list of all created repositories
+- `harbor.projects`: a list of all created Harbor projects
+- `harbor.robotAccounts`: a list of all created Harbor robot accounts
 
 ---
 

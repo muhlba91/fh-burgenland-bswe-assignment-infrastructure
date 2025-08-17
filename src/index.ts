@@ -40,9 +40,7 @@ export = async () => {
     repositories: Object.values(githubRepositories).map((repo) => repo.name),
     harbor: {
       projects: Object.values(harborProjects).map((project) => project.name),
-      robotAccounts: Object.values(harborRobotAccounts).map(
-        (account) => account,
-      ),
+      robotAccounts: Object.values(harborRobotAccounts),
     },
   };
 };

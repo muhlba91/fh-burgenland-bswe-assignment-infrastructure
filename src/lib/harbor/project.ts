@@ -66,8 +66,6 @@ const createProject = (
     ),
   );
 
-  // TODO: pull-only access for other teams
-
   return harborProject;
 };
 
