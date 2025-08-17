@@ -70,6 +70,11 @@ export const createRobotAccount = (
   );
 
   githubRepository.apply((repo) => {
+    writeToGitHubActionsSecret(
+      repo,
+      'HARBOR_REGISTRY_URL',
+      Output.create(process.env.HARBOR_URL || ''),
+    );
     writeToGitHubActionsSecret(repo, 'HARBOR_ROBOT_NAME', robot.fullName);
     writeToGitHubActionsSecret(
       repo,
