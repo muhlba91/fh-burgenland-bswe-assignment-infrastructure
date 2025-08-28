@@ -33,9 +33,11 @@ export const createRepositoryAccess = (
     },
   );
 
-  repository.teams.forEach(async (team) => {
-    createTeamAccess(githubRepository, team, githubTeams[team.name]?.id);
-  });
+  repository.teams
+    .filter((team) => repositoryRoleToGitHubRole(team.role) == 'maintain')
+    .forEach((team) => {
+      createTeamAccess(githubRepository, team, githubTeams[team.name]?.id);
+    });
 };
 
 /**
