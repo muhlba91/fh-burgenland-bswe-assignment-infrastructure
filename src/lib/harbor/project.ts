@@ -50,6 +50,7 @@ const createProject = (
         forceDestroy: true,
       }),
   );
+  createProjectPolicies(harborProject);
 
   repository.apply((repo) =>
     teams.forEach(
@@ -82,4 +83,30 @@ const repositoryRoleToHarborRole = (role: string): string => {
     default:
       return 'limitedGuest';
   }
+};
+
+/**
+ * Creates policies for a Harbor project.
+ *
+ * @param {Output<harbor.Project>} project the Harbor project
+ */
+const createProjectPolicies = (project: Output<harbor.Project>) => {
+  project.apply((harborProject) => {
+    new harbor.RetentionPolicy(
+      `harbor-retention-policy-${harborProject.name}`,
+      {
+        scope: harborProject.id,
+        schedule: 'Daily',
+        rules: [
+          {
+            disabled: false,
+            repoMatching: '**',
+            tagMatching: '**',
+            mostRecentlyPulled: 3,
+            mostRecentlyPushed: 3,
+          },
+        ],
+      },
+    );
+  });
 };
