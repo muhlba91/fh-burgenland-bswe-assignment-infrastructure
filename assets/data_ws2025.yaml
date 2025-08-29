@@ -4,12 +4,26 @@ teams:
     members:
       - muhlba91
 repositories:
+  - name: test-repository
+    service: harbor-integration-test
+    teams:
+      - name: group-dmuehlbachler
+        role: developer
+    approvers: 1
+    deleteOnDestroy: true
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
   - name: api-specifications
     service: api-specifications
     teams: []
     approvers: 2
     aws: false
+    pulumi: false
     terraform: false
+    harbor: false
     requiredChecks:
       - Conform
       - Spectral Linter
@@ -19,7 +33,9 @@ repositories:
     teams: []
     approvers: 2
     aws: false
+    pulumi: false
     terraform: false
+    harbor: false
     requiredChecks:
       - Conform
       - YAMLLint

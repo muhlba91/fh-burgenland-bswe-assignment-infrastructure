@@ -73,7 +73,7 @@ export const createRobotAccount = (
     writeToGitHubActionsSecret(
       repo,
       'HARBOR_REGISTRY_URL',
-      Output.create(process.env.HARBOR_URL || ''),
+      Output.create(process.env.HARBOR_URL?.replace('https://', '') || ''),
     );
     writeToGitHubActionsSecret(repo, 'HARBOR_ROBOT_NAME', robot.fullName);
     writeToGitHubActionsSecret(

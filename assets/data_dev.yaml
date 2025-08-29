@@ -19,6 +19,7 @@ repositories:
     approvers: 2
     deleteOnDestroy: true
     aws: false
+    pulumi: false
     terraform: false
     harbor: false
     requiredChecks: []

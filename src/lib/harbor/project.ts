@@ -56,7 +56,7 @@ const createProject = (
     teams.forEach(
       (team) =>
         new harbor.ProjectMemberGroup(
-          `harbor-project-member-group-${repo}-${team}`,
+          `harbor-project-member-group-${repo}-${team.name}`,
           {
             projectId: harborProject.id,
             type: 'oidc',
@@ -91,22 +91,24 @@ const repositoryRoleToHarborRole = (role: string): string => {
  * @param {Output<harbor.Project>} project the Harbor project
  */
 const createProjectPolicies = (project: Output<harbor.Project>) => {
-  project.apply((harborProject) => {
-    new harbor.RetentionPolicy(
-      `harbor-retention-policy-${harborProject.name}`,
-      {
-        scope: harborProject.id,
-        schedule: 'Daily',
-        rules: [
-          {
-            disabled: false,
-            repoMatching: '**',
-            tagMatching: '**',
-            mostRecentlyPulled: 3,
-            mostRecentlyPushed: 3,
-          },
-        ],
-      },
-    );
+  project.name.apply((harborProject) => {
+    new harbor.RetentionPolicy(`harbor-retention-policy-${harborProject}`, {
+      scope: project.id,
+      schedule: 'Daily',
+      rules: [
+        {
+          disabled: false,
+          repoMatching: '**',
+          tagMatching: '**',
+          mostRecentlyPulled: 3,
+        },
+        {
+          disabled: false,
+          repoMatching: '**',
+          tagMatching: '**',
+          mostRecentlyPushed: 3,
+        },
+      ],
+    });
   });
 };
