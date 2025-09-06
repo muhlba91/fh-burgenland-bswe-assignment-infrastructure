@@ -1,11 +1,11 @@
 #!/bin/bash
 
 YEAR_IDENTIFIER="ws2025"
-IDENTIFIERS="a b c d e f g h i j k l"
-MATCHED_GROUPS="aj bc di ef gl hk"
+IDENTIFIERS="a b c d e f g h"
+MATCHED_GROUPS=""
 
-SERVICES="accounts transactions"
-GROUP_SERVICES="broker frontend"
+SERVICES="inventory order frontend"
+GROUP_SERVICES=""
 
 IFS=' ' read -r -a array <<< "$IDENTIFIERS"
 IFS=' ' read -r -a array_groups <<< "$MATCHED_GROUPS"

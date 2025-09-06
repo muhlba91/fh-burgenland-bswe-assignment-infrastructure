@@ -39,3 +39,219 @@ repositories:
     requiredChecks:
       - Conform
       - YAMLLint
+  - name: group-a-inventory
+    service: inventory
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-a-order
+    service: order
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-a-frontend
+    service: frontend
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-b-inventory
+    service: inventory
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-b-order
+    service: order
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-b-frontend
+    service: frontend
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-c-inventory
+    service: inventory
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-c-order
+    service: order
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-c-frontend
+    service: frontend
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-d-inventory
+    service: inventory
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-d-order
+    service: order
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-d-frontend
+    service: frontend
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-e-inventory
+    service: inventory
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-e-order
+    service: order
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-e-frontend
+    service: frontend
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-f-inventory
+    service: inventory
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-f-order
+    service: order
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-f-frontend
+    service: frontend
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-g-inventory
+    service: inventory
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-g-order
+    service: order
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-g-frontend
+    service: frontend
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-h-inventory
+    service: inventory
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-h-order
+    service: order
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-h-frontend
+    service: frontend
+    teams: []
+    approvers: 1
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
