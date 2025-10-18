@@ -96,6 +96,8 @@ repositories:
     teams:
       - name: group-a
         role: developer
+      - name: group-c
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false
@@ -107,6 +109,8 @@ repositories:
     teams:
       - name: group-a
         role: developer
+      - name: group-c
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false
@@ -129,6 +133,10 @@ repositories:
     teams:
       - name: group-b
         role: developer
+      - name: group-e
+        role: viewer
+      - name: group-g
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false
@@ -140,6 +148,10 @@ repositories:
     teams:
       - name: group-b
         role: developer
+      - name: group-e
+        role: viewer
+      - name: group-g
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false
@@ -162,6 +174,8 @@ repositories:
     teams:
       - name: group-c
         role: developer
+      - name: group-a
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false
@@ -173,6 +187,8 @@ repositories:
     teams:
       - name: group-c
         role: developer
+      - name: group-a
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false
@@ -195,6 +211,8 @@ repositories:
     teams:
       - name: group-d
         role: developer
+      - name: group-f
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false
@@ -206,6 +224,8 @@ repositories:
     teams:
       - name: group-d
         role: developer
+      - name: group-f
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false
@@ -294,6 +314,8 @@ repositories:
     teams:
       - name: group-g
         role: developer
+      - name: group-b
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false
@@ -305,6 +327,8 @@ repositories:
     teams:
       - name: group-g
         role: developer
+      - name: group-b
+        role: viewer
     approvers: 1
     aws: false
     pulumi: false

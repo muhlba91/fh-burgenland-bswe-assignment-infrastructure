@@ -81,7 +81,7 @@ const repositoryRoleToHarborRole = (role: string): string => {
     case 'developer':
       return 'maintainer';
     default:
-      return 'limitedGuest';
+      return 'limitedguest';
   }
 };
 
