@@ -82,7 +82,21 @@ repositories:
       - YAMLLint
   - name: kubernetes-applications
     service: kubernetes-applications
-    teams: []
+    teams:
+      - name: group-a
+        role: developer
+      - name: group-b
+        role: developer
+      - name: group-c
+        role: developer
+      - name: group-d
+        role: developer
+      - name: group-e
+        role: developer
+      - name: group-f
+        role: developer
+      - name: group-g
+        role: developer
     approvers: 2
     aws: false
     pulumi: false
