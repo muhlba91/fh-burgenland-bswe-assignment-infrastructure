@@ -300,7 +300,9 @@ repositories:
     pulumi: false
     terraform: false
     harbor: true
-    requiredChecks: []
+    requiredChecks:
+      - Build
+      - Build Check Container Image
   - name: group-f-order
     service: order
     teams:
