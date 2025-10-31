@@ -232,7 +232,11 @@ repositories:
     pulumi: false
     terraform: false
     harbor: true
-    requiredChecks: []
+    requiredChecks:
+      - "Validate Commit Messages"
+      - "Build & Test"
+      - "Dependency Analysis"
+      - "Secrets & Sensitive Data Scan"
   - name: group-d-order
     service: order
     teams:
