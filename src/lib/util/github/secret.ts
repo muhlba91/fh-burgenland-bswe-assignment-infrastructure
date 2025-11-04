@@ -19,6 +19,7 @@ export const writeToGitHubActionsSecret = (
       repository: repository,
       secretName: key,
       plaintextValue: value,
+      destroyOnDrift: false,
     },
     {},
   );
