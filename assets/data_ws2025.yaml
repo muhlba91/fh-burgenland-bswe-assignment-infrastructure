@@ -117,7 +117,14 @@ repositories:
     pulumi: false
     terraform: false
     harbor: true
-    requiredChecks: []
+    requiredChecks:
+      - "Conform"
+      - "Checkstyle (24)"
+      - "PMD (24)"
+      - "SpotBugs (24)"
+      - "Unit Tests (24)"
+      - "Run Hadolint"
+      - "build"
   - name: group-a-order
     service: order
     teams:
