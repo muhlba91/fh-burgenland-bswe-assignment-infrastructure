@@ -124,6 +124,7 @@ repositories:
       - "SpotBugs"
       - "Unit Tests"
       - "Run Hadolint"
+      - "build"
   - name: group-a-order
     service: order
     teams:
