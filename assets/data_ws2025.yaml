@@ -163,7 +163,8 @@ repositories:
     pulumi: false
     terraform: false
     harbor: true
-    requiredChecks: []
+    requiredChecks:
+      - Build and Push Docker Image to Harbor
   - name: group-b-order
     service: order
     teams:
@@ -178,7 +179,8 @@ repositories:
     pulumi: false
     terraform: false
     harbor: true
-    requiredChecks: []
+    requiredChecks:
+      - Build and Push Docker Image to Harbor
   - name: group-b-frontend
     service: frontend
     teams:
@@ -189,7 +191,8 @@ repositories:
     pulumi: false
     terraform: false
     harbor: false
-    requiredChecks: []
+    requiredChecks:
+      - release-frontend
   - name: group-c-inventory
     service: inventory
     teams:
