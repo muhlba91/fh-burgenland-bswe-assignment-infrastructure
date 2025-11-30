@@ -144,7 +144,7 @@ repositories:
       - name: group-a
         role: developer
     approvers: 1
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
@@ -185,7 +185,7 @@ repositories:
       - name: group-b
         role: developer
     approvers: 1
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
@@ -222,7 +222,7 @@ repositories:
       - name: group-c
         role: developer
     approvers: 1
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
@@ -263,7 +263,7 @@ repositories:
       - name: group-d
         role: developer
     approvers: 1
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
@@ -296,7 +296,7 @@ repositories:
       - name: group-e
         role: developer
     approvers: 1
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
@@ -331,7 +331,7 @@ repositories:
       - name: group-f
         role: developer
     approvers: 1
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
@@ -368,7 +368,7 @@ repositories:
       - name: group-g
         role: developer
     approvers: 1
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
