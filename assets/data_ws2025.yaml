@@ -138,13 +138,13 @@ repositories:
     terraform: false
     harbor: true
     requiredChecks:
-        - "Conform"
-        - "Checkstyle (24)"
-        - "PMD (24)"
-        - "SpotBugs (24)"
-        - "Run Tests (24)"
-        - "Run Hadolint"
-        - "Build"
+      - "Conform"
+      - "Checkstyle (24)"
+      - "PMD (24)"
+      - "SpotBugs (24)"
+      - "Run Tests (24)"
+      - "Run Hadolint"
+      - "Build"
   - name: group-a-frontend
     service: frontend
     teams:
