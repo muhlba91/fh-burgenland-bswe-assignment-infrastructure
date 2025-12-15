@@ -5,6 +5,7 @@ ignore: |
   node_modules/
   Pulumi.*.yaml
   .pre-commit-config.yaml
+  .golangci.yml
 
 rules:
   comments-indentation: false

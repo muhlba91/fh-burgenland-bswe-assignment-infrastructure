@@ -17,7 +17,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
 
@@ -34,7 +34,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
 
@@ -42,88 +42,65 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    name: ESLint
+    name: Lint
     strategy:
-      max-parallel: 12
+      max-parallel: 4
       matrix:
-        node-version: ["24"]
+        go-version: [1.25.x]
+        golangci-lint-version: [v2.6.1]
 
     steps:
       - uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
 
-      - run: |
-          corepack enable
-
-      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
+      - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
         with:
-          node-version: ${{ matrix.node-version }}
+          go-version: "${{ matrix.go-version }}"
+
+      - uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0
+        with:
+          version: "${{ matrix.golangci-lint-version }}"
+          args: -c .golangci.yml
+          skip-cache: true
+          skip-save-cache: true
 
       - run: |
-          yarn install --immutable
-          yarn lint
+          go vet ./...
 
-  audit:
+  test:
     runs-on: ubuntu-latest
-    name: Node Audit
+    name: Unit Tests
     strategy:
-      max-parallel: 12
+      max-parallel: 4
       matrix:
-        node-version: ["24"]
+        go-version: [1.25.x]
 
     steps:
       - uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
 
-      - run: |
-          corepack enable
-
-      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
+      - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
         with:
-          node-version: ${{ matrix.node-version }}
+          go-version: "${{ matrix.go-version }}"
 
       - run: |
-          yarn install --immutable
-          yarn npm audit
-        continue-on-error: true
-
-  build:
-    runs-on: ubuntu-latest
-    name: Build IaC code
-    strategy:
-      max-parallel: 12
-      matrix:
-        node-version: ["24"]
-
-    steps:
-      - uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
-        with:
-          egress-policy: audit
-
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
-        with:
-          fetch-depth: 0
+          make test
 
       - run: |
-          corepack enable
-
-      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - run: |
-          yarn install --immutable
-          yarn build
+          go install github.com/mattn/goveralls@latest
+          goveralls -coverprofile=covprofile -service=github
+        env:
+          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   preview:
     runs-on: ubuntu-latest
@@ -132,16 +109,15 @@ jobs:
       - conform
       - yamllint
       - lint
-      - audit
-      - build
+      - test
     permissions:
       id-token: write
       contents: read
       pull-requests: write
     strategy:
-      max-parallel: 12
+      max-parallel: 4
       matrix:
-        node-version: ["24"]
+        go-version: [1.25.x]
         stack:
           - dev
           - ws2025
@@ -151,16 +127,13 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
 
-      - run: |
-          corepack enable
-
-      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
+      - uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
         with:
-          node-version: ${{ matrix.node-version }}
+          go-version: "${{ matrix.go-version }}"
 
       - uses: hashicorp/vault-action@4c06c5ccf5c0761b6029f56cfb1dcf5565918a3b # v3.4.0
         id: import-secrets
@@ -190,10 +163,6 @@ jobs:
         with:
           role-to-assume: ${{ env.AWS_IDENTITY_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
-
-      - run: |
-          yarn install --immutable
-          yarn build
 
       - uses: pulumi/actions@8582a9e8cc630786854029b4e09281acd6794b58 # v6.6.1
         with:
