@@ -30,7 +30,7 @@ func createAccountIAM(ctx *pulumi.Context,
 
 		postfix, _ := random.CreateString(
 			ctx,
-			fmt.Sprintf("random-string-aws-iam-role-ci-%s", name),
+			fmt.Sprintf("random-string-aws-iam-role-%s", name),
 			&random.StringOptions{
 				Length:  postfixLength,
 				Special: false,
@@ -97,7 +97,7 @@ func createRole(ctx *pulumi.Context,
 	})
 
 	ciRole, cirErr := role.Create(ctx, repository, &role.CreateOptions{
-		Name:             pulumi.Sprintf("ci-%s-%s", truncatedRepository, ciPostfix),
+		Name:             pulumi.Sprintf("%s-%s", truncatedRepository, ciPostfix),
 		Description:      pulumi.Sprintf("FH Burgenland Softwaremanagement II GitHub Repository: %s", repository),
 		AssumeRolePolicy: pulumi.String(policyDoc),
 		Labels:           tags,
@@ -152,7 +152,7 @@ func createPolicy(ctx *pulumi.Context,
 	}
 
 	ciPolicy, cipolErr := policy.Create(ctx, repository, &policy.CreateOptions{
-		Name:        pulumi.Sprintf("ci-%s-%s", truncatedRepository, ciPostfix),
+		Name:        pulumi.Sprintf("%s-%s", truncatedRepository, ciPostfix),
 		Description: pulumi.Sprintf("FH Burgenland Softwaremanagement II GitHub Repository: %s", repository),
 		Policy:      pulumi.String(policyDoc.Json),
 		Labels:      tags,
@@ -161,7 +161,7 @@ func createPolicy(ctx *pulumi.Context,
 		return cipolErr
 	}
 
-	_, paErr := role.CreatePolicyAttachment(ctx, fmt.Sprintf("ci-%s", repository), &role.CreatePolicyAttachmentOptions{
+	_, paErr := role.CreatePolicyAttachment(ctx, repository, &role.CreatePolicyAttachmentOptions{
 		Roles:     pulumi.StringArray{ciRole.Name},
 		PolicyArn: ciPolicy.Arn,
 		PulumiOptions: []pulumi.ResourceOption{
