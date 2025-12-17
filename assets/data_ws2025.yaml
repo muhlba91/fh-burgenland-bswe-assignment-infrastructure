@@ -251,9 +251,11 @@ repositories:
     harbor: true
     requiredChecks:
       - "Validate Commit Messages"
-      - "Build & Test"
-      - "Dependency Analysis"
-      - "Secrets & Sensitive Data Scan"
+      - "Code Quality Check"
+      - "Unit Tests"
+      - "Build Application"
+      - "Integration Tests"
+      - "Generate Javadoc"
   - name: group-d-order
     service: order
     teams:
