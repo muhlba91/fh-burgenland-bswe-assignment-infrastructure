@@ -152,10 +152,14 @@ repositories:
         role: developer
     approvers: 1
     aws: true
-    pulumi: false
+    pulumi: true
     terraform: false
     harbor: false
-    requiredChecks: []
+    requiredChecks:
+      - "Conform"
+      - "ESLint (24)"
+      - "Security audit (24)"
+      - "Build (24)"
   - name: group-b-inventory
     service: inventory
     teams:
