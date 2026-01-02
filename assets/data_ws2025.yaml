@@ -216,7 +216,11 @@ repositories:
     pulumi: false
     terraform: false
     harbor: true
-    requiredChecks: []
+    requiredChecks:
+      - "Build & Check with JDK 21"
+      - "Commitlint"
+      - "Hadolint"
+      - "Trivy Vulnerability Scan"
   - name: group-c-order
     service: order
     teams:
