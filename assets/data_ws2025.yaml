@@ -248,7 +248,11 @@ repositories:
     pulumi: false
     terraform: false
     harbor: false
-    requiredChecks: []
+    requiredChecks:
+      - "Build and test"
+      - "ESLint"
+      - "Trivy Vulnerability Scan"
+      - "Commitlint"
   - name: group-d-inventory
     service: inventory
     teams:
