@@ -365,7 +365,9 @@ repositories:
     pulumi: false
     terraform: false
     harbor: false
-    requiredChecks: []
+    requiredChecks:
+      - Build Application
+      - Run Unit Tests
   - name: group-g-inventory
     service: inventory
     teams:
