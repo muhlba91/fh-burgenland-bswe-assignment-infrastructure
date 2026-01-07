@@ -199,7 +199,7 @@ repositories:
         role: developer
     approvers: 1
     aws: true
-    pulumi: false
+    pulumi: true
     terraform: false
     harbor: false
     requiredChecks:
