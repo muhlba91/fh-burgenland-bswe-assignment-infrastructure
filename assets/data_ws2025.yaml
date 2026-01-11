@@ -293,7 +293,7 @@ repositories:
     approvers: 1
     aws: true
     pulumi: false
-    terraform: false
+    terraform: true
     harbor: false
     requiredChecks:
       - "Validate Commit Messages"
