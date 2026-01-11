@@ -295,7 +295,13 @@ repositories:
     pulumi: false
     terraform: false
     harbor: false
-    requiredChecks: []
+    requiredChecks:
+      - "Validate Commit Messages"
+      - "Code Quality Check"
+      - "E2E Tests"
+      - "Unit Tests"
+      - "Dependency Analysis"
+      - "Secrets & Sensitive Data Scan"
   - name: group-e-inventory
     service: inventory
     teams:
