@@ -216,6 +216,8 @@ github.com/pulumi/pulumi-aws/sdk/v7 v7.15.0 h1:6Ae7ZU+xmXhYN8KDitJdnv3hojogvurm5
 github.com/pulumi/pulumi-aws/sdk/v7 v7.15.0/go.mod h1:hsOxQjCl7ASsYWRVC8UtbFaR+xx9S0QwNFnbo0Kzg1I=
 github.com/pulumi/pulumi-aws/sdk/v7 v7.16.0 h1:SYHQ/Zoru+jpUSbZb/s/DH5AA1yk4DUQwPzor+NIu3k=
 github.com/pulumi/pulumi-aws/sdk/v7 v7.16.0/go.mod h1:RUG8URNfkq/lmBQa2+oIFoASIXAJbGwciBCL5m+JwmI=
+github.com/pulumi/pulumi-aws/sdk/v7 v7.17.0 h1:Zv9f4KFaqMhehtPKqKkVrnPf2wvOKGfRtp4wmxT38tA=
+github.com/pulumi/pulumi-aws/sdk/v7 v7.17.0/go.mod h1:RUG8URNfkq/lmBQa2+oIFoASIXAJbGwciBCL5m+JwmI=
 github.com/pulumi/pulumi-github/sdk/v6 v6.10.1 h1:s7abjKT0FlxmeI1dNqOZfnfsqVWvpymwTWVo1Q03VNA=
 github.com/pulumi/pulumi-github/sdk/v6 v6.10.1/go.mod h1:uCcKJB4TIocRjiUT/Aaeh3pAFsYuf4pUlJBQyKd4qNE=
 github.com/pulumi/pulumi-github/sdk/v6 v6.11.0 h1:A/h2QygDlQsiADG+SXQBjHEaITDA+mhRCG4ovwwSzDc=
