@@ -399,7 +399,11 @@ repositories:
     pulumi: false
     terraform: false
     harbor: true
-    requiredChecks: []
+    requiredChecks:
+      - "Lint (Checkstyle + PMD)"
+      - "Security (SpotBugs + FindSecBugs)"
+      - "Test (JUnit + JaCoCo)"
+      - Build
   - name: group-g-frontend
     service: frontend
     teams:
@@ -408,6 +412,10 @@ repositories:
     approvers: 1
     aws: true
     pulumi: false
-    terraform: false
+    terraform: true
     harbor: false
-    requiredChecks: []
+    requiredChecks:
+      - Lint
+      - Security Audit
+      - Test
+      - Build
