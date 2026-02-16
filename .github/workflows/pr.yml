@@ -47,7 +47,7 @@ jobs:
       max-parallel: 4
       matrix:
         go-version: [1.25.x]
-        golangci-lint-version: [v2.6.1]
+        golangci-lint-version: [v2.9.0]
 
     steps:
       - uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
@@ -120,7 +120,6 @@ jobs:
         go-version: [1.25.x]
         stack:
           - dev
-          - ws2025
 
     steps:
       - uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e # v2.14.2
