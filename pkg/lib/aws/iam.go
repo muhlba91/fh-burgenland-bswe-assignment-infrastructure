@@ -5,9 +5,10 @@ import (
 	"fmt"
 
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/config"
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/secret"
 	"github.com/muhlba91/pulumi-shared-library/pkg/lib/aws/iam/policy"
 	"github.com/muhlba91/pulumi-shared-library/pkg/lib/aws/iam/role"
-	"github.com/muhlba91/pulumi-shared-library/pkg/lib/github/actions/secret"
 	"github.com/muhlba91/pulumi-shared-library/pkg/lib/random"
 	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/iam"
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
@@ -16,45 +17,35 @@ import (
 
 // createAccountIAM creates AWS IAM roles for Continuous Integration for the specified repository account.
 // ctx: Pulumi context for resource management.
-// repository: The GitHub repository.
+// repository: The name of the GitHub repository for which to create the IAM role.
 // identityProviderArn: ARN of the AWS IAM Identity Provider for GitHub OIDC.
+// githubRepositories: Map of created GitHub repositories to ensure the repository exists before creating IAM roles.
 func createAccountIAM(ctx *pulumi.Context,
-	repository *github.Repository,
+	repository *repository.Config,
 	identityProviderArn string,
+	githubRepositories map[string]*github.Repository,
 ) pulumi.StringOutput {
 	tags := config.CommonLabels()
 	tags["organization"] = "fh-burgenland-bswe"
 
-	roleArn, _ := repository.Name.ApplyT(func(name string) pulumi.StringOutput {
-		truncatedRepository := name[:min(maxRepositoryLength, len(name))]
+	truncatedRepository := repository.Name[:min(maxRepositoryLength, len(repository.Name))]
 
-		postfix, _ := random.CreateString(
-			ctx,
-			fmt.Sprintf("random-string-aws-iam-role-%s", name),
-			&random.StringOptions{
-				Length:  postfixLength,
-				Special: false,
-			},
-		)
+	postfix, _ := random.CreateString(
+		ctx,
+		fmt.Sprintf("random-string-aws-iam-role-%s", repository.Name),
+		&random.StringOptions{
+			Length:  postfixLength,
+			Special: false,
+		},
+	)
 
-		ciRole, _ := createRole(ctx, name, identityProviderArn, tags, truncatedRepository, postfix.Text)
-		_ = createPolicy(ctx, name, ciRole, tags, truncatedRepository, postfix.Text)
+	ciRole, _ := createRole(ctx, repository.Name, identityProviderArn, tags, truncatedRepository, postfix.Text)
+	_ = createPolicy(ctx, repository.Name, ciRole, tags, truncatedRepository, postfix.Text)
 
-		secret.Write(ctx, &secret.WriteArgs{
-			Repository: repository,
-			Key:        "AWS_IDENTITY_ROLE_ARN",
-			Value:      ciRole.Arn,
-		})
-		secret.Write(ctx, &secret.WriteArgs{
-			Repository: repository,
-			Key:        "AWS_REGION",
-			Value:      pulumi.String(config.AWSDefaultRegion),
-		})
+	_ = secret.Write(ctx, repository, githubRepositories, "AWS_IDENTITY_ROLE_ARN", ciRole.Arn)
+	_ = secret.Write(ctx, repository, githubRepositories, "AWS_REGION", pulumi.String(config.AWSDefaultRegion))
 
-		return ciRole.Arn
-	}).(pulumi.StringOutput)
-
-	return roleArn
+	return ciRole.Arn
 }
 
 // createRole creates an AWS IAM role for Continuous Integration for the specified repository account.

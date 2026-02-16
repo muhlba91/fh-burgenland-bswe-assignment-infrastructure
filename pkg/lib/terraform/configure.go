@@ -5,11 +5,13 @@ import (
 
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/config"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/feature"
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/secret"
 	"github.com/muhlba91/pulumi-shared-library/pkg/lib/aws/s3/bucket"
-	"github.com/muhlba91/pulumi-shared-library/pkg/lib/github/actions/secret"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/rs/zerolog/log"
 )
 
 // Configure configures Terraform resources.
@@ -22,6 +24,11 @@ func Configure(
 	githubRepositories map[string]*github.Repository,
 ) (map[string]*pulumi.StringOutput, error) {
 	buckets := make(map[string]*pulumi.StringOutput)
+
+	if !feature.Terraform() {
+		log.Info().Msg("[terraform] feature is disabled, skipping terraform configuration")
+		return buckets, nil
+	}
 
 	for _, repo := range repositories {
 		if !defaults.GetOrDefault(repo.Terraform, false) {
@@ -38,16 +45,7 @@ func Configure(
 			return nil, err
 		}
 
-		ghRepo, exists := githubRepositories[repo.Name]
-		if !exists {
-			return nil, fmt.Errorf("repository %s not found in created GitHub repositories", repo.Name)
-		}
-
-		secret.Write(ctx, &secret.WriteArgs{
-			Repository: ghRepo,
-			Key:        "TERRAFORM_BACKEND_BUCKET",
-			Value:      bucket.Bucket,
-		})
+		_ = secret.Write(ctx, repo, githubRepositories, "TERRAFORM_BACKEND_BUCKET", bucket.Bucket)
 
 		buckets[repo.Name] = &bucket.Bucket
 	}

@@ -1,4 +1,4 @@
-package util //nolint:revive // package name is util
+package data
 
 import (
 	"os"
@@ -9,6 +9,7 @@ import (
 )
 
 // ParseDataFromFiles reads the configuration file from the specified path.
+// path: The path to the configuration file to read.
 func ParseDataFromFiles(path string) (*stack.Config, error) {
 	b, rErr := os.ReadFile(path)
 	if rErr != nil {

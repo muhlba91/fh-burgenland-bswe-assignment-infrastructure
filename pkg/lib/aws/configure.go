@@ -1,13 +1,13 @@
 package aws
 
 import (
-	"fmt"
-
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/feature"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/iam"
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/rs/zerolog/log"
 )
 
 // Configure sets up AWS resources based on the provided configuration.
@@ -19,6 +19,11 @@ func Configure(ctx *pulumi.Context,
 	githubRepositories map[string]*github.Repository,
 ) (map[string]*pulumi.StringOutput, error) {
 	accounts := make(map[string]*pulumi.StringOutput)
+
+	if !feature.AWS() {
+		log.Info().Msg("[aws] feature is disabled, skipping aws configuration")
+		return accounts, nil
+	}
 
 	githubOidcURL := "https://token.actions.githubusercontent.com"
 	identityProvider, ipErr := iam.LookupOpenIdConnectProvider(ctx, &iam.LookupOpenIdConnectProviderArgs{
@@ -33,13 +38,7 @@ func Configure(ctx *pulumi.Context,
 			continue
 		}
 
-		ghRepo, exists := githubRepositories[repo.Name]
-		if !exists {
-			return nil, fmt.Errorf("repository %s not found in created GitHub repositories", repo.Name)
-		}
-
-		roleArn := createAccountIAM(ctx, ghRepo, identityProvider.Arn)
-
+		roleArn := createAccountIAM(ctx, repo, identityProvider.Arn, githubRepositories)
 		accounts[repo.Name] = &roleArn
 	}
 

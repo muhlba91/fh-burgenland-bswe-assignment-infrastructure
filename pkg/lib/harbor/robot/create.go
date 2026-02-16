@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
-	"github.com/muhlba91/pulumi-shared-library/pkg/lib/github/actions/secret"
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/secret"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -75,23 +75,18 @@ func Create(
 		}).(pulumi.StringOutput)
 		harborRobotAccounts[repoConfig.Name] = &robotAccount
 
-		secret.Write(ctx, &secret.WriteArgs{
-			Repository: ghRepo,
-			Key:        "HARBOR_REGISTRY_URL",
-			Value:      pulumi.String(strings.ReplaceAll(os.Getenv("HARBOR_URL"), "https://", "")),
-		})
 		robotName, _ := robot.ApplyT(func(r *harbor.RobotAccount) pulumi.StringOutput { return r.FullName }).(pulumi.StringOutput)
-		secret.Write(ctx, &secret.WriteArgs{
-			Repository: ghRepo,
-			Key:        "HARBOR_ROBOT_NAME",
-			Value:      robotName,
-		})
 		robotSecret, _ := robot.ApplyT(func(r *harbor.RobotAccount) pulumi.StringOutput { return r.Secret }).(pulumi.StringOutput)
-		secret.Write(ctx, &secret.WriteArgs{
-			Repository: ghRepo,
-			Key:        "HARBOR_ROBOT_SECRET",
-			Value:      robotSecret,
-		})
+
+		_ = secret.Write(
+			ctx,
+			repoConfig,
+			githubRepositories,
+			"HARBOR_REGISTRY_URL",
+			pulumi.String(strings.ReplaceAll(os.Getenv("HARBOR_URL"), "https://", "")),
+		)
+		_ = secret.Write(ctx, repoConfig, githubRepositories, "HARBOR_ROBOT_NAME", robotName)
+		_ = secret.Write(ctx, repoConfig, githubRepositories, "HARBOR_ROBOT_SECRET", robotSecret)
 	}
 
 	return harborRobotAccounts, nil

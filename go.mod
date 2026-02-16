@@ -8,6 +8,7 @@ require (
 	github.com/pulumi/pulumi-github/sdk/v6 v6.12.1
 	github.com/pulumi/pulumi/sdk/v3 v3.220.0
 	github.com/pulumiverse/pulumi-harbor/sdk/v3 v3.10.21
+	github.com/rs/zerolog v1.34.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -73,7 +74,6 @@ require (
 	github.com/pulumi/pulumi-random/sdk/v4 v4.19.1 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
-	github.com/rs/zerolog v1.34.0 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.3.1 // indirect
 	github.com/sergi/go-diff v1.4.0 // indirect
 	github.com/skeema/knownhosts v1.3.2 // indirect

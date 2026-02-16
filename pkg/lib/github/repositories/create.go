@@ -8,6 +8,7 @@ import (
 
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/config"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/provider"
 	libRepo "github.com/muhlba91/pulumi-shared-library/pkg/lib/github/repository"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 )
@@ -27,6 +28,10 @@ func Create(
 	repos := make(map[string]*github.Repository)
 
 	for _, repo := range repositories {
+		if !provider.GitHub(repo) {
+			continue
+		}
+
 		ghRepo, err := create(ctx, repo, githubTeams)
 		if err != nil {
 			return nil, err

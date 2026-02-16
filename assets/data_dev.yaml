@@ -1,4 +1,6 @@
 ---
+classroom: swm2
+features: []
 teams:
   - name: dmuehlbachler
     deleteOnDestroy: true
@@ -7,12 +9,40 @@ teams:
 repositories:
   - name: infrastructure-lifecycle
     service: infrastructure-lifecycle
+    provider: github
     teams: []
     requiredChecks:
       - Conform
       - YAMLLint
+  - name: test-repository-none
+    service: none-test
+    provider: none
+    teams:
+      - name: dmuehlbachler
+        role: developer
+    approvers: 2
+    deleteOnDestroy: true
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
   - name: test-repository
-    service: accounts
+    service: github-test
+    provider: github
+    teams:
+      - name: dmuehlbachler
+        role: developer
+    approvers: 2
+    deleteOnDestroy: true
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: test-repository-gitlab
+    service: gitlab-test
+    provider: gitlab
     teams:
       - name: dmuehlbachler
         role: developer

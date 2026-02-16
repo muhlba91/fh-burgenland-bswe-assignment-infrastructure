@@ -2,6 +2,8 @@ package repository
 
 // Config defines Repository-related configuration.
 type Config struct {
+	// Provider is the name of the repository provider (e.g., GitHub, GitLab).
+	Provider *string `yaml:"provider,omitempty"`
 	// Name is the name of the repository.
 	Name string `yaml:"name"`
 	// Service is the intended purpose of the repository.

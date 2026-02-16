@@ -9,7 +9,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/stack"
-	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util"
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/data"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 )
 
@@ -18,7 +18,7 @@ var (
 	// Environment holds the current deployment environment (e.g., dev, staging, prod).
 	Environment string
 	// GlobalName is a constant name used across resources.
-	GlobalName = "swm2"
+	GlobalName string
 	// GitHubOrganization is the GitHub organization used for resources.
 	GitHubOrganization string
 	// GitHubHandle is the GitHub handle used for resources.
@@ -29,6 +29,8 @@ var (
 	AWSAccountID = "061039787254"
 	// AllowRepositoryDeletion indicates whether repository deletion is permitted.
 	AllowRepositoryDeletion = false
+	// FeatureGates holds the feature gates for conditional resource creation.
+	FeatureGates = []string{}
 )
 
 // LoadConfig loads the configuration for the given Pulumi context.
@@ -43,10 +45,13 @@ func LoadConfig(
 	repoDelEnv := strings.ToLower(os.Getenv("ALLOW_REPOSITORY_DELETION"))
 	AllowRepositoryDeletion = defaults.GetOrDefault(&repoDelEnv, "false") == "true"
 
-	stackConfig, rErr := util.ParseDataFromFiles(fmt.Sprintf("./assets/data_%s.yaml", Environment))
+	stackConfig, rErr := data.ParseDataFromFiles(fmt.Sprintf("./assets/data_%s.yaml", Environment))
 	if rErr != nil {
 		return nil, rErr
 	}
+
+	FeatureGates = stackConfig.Features
+	GlobalName = stackConfig.Name
 
 	return stackConfig, nil
 }
