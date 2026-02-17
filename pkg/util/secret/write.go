@@ -47,7 +47,7 @@ func writeGitHub(
 		return fmt.Errorf("[secret]repository %s not found in created GitHub repositories", name)
 	}
 
-	secret.Write(ctx, &secret.WriteArgs{
+	secret.Create(ctx, &secret.CreateOptions{
 		Repository: repository,
 		Key:        key,
 		Value:      value,
