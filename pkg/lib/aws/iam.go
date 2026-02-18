@@ -62,6 +62,7 @@ func createRole(ctx *pulumi.Context,
 	truncatedRepository string,
 	ciPostfix pulumi.StringOutput,
 ) (*iam.Role, error) {
+	//nolint:gosec // the token url is required for the trust relationship and does not contain any sensitive information
 	policyDoc, _ := json.Marshal(map[string]any{
 		"Version": "2012-10-17",
 		"Statement": []map[string]any{
