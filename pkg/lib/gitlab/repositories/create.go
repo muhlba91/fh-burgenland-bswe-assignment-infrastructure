@@ -17,6 +17,9 @@ import (
 // defaultVisibility is the default visibility for GitLab repositories.
 const defaultVisibility = "private"
 
+// defaultDeletePipelinesInSeconds is the default time in seconds after which pipelines will be automatically deleted.
+const defaultDeletePipelinesInSeconds = 1209600 // 14 days
+
 // Create creates multiple GitLab repositories based on the provided configuration.
 // ctx: The Pulumi context for resource creation.
 // repositories: A slice of repository configurations to create.
@@ -72,6 +75,7 @@ func create(
 
 	defVis := defaultVisibility
 	trueValue := true
+	deletePipelinesInSeconds := defaultDeletePipelinesInSeconds
 	repo, err := libRepo.Create(ctx, repository.Name, &libRepo.CreateOptions{
 		Name: pulumi.Sprintf("%s-%s-%s", config.Classroom.Tag, config.Environment, repository.Name),
 		Description: pulumi.Sprintf(
@@ -80,13 +84,14 @@ func create(
 			config.Environment,
 			repository.Service,
 		),
-		NamespaceID:             owner,
-		ConversationResolution:  &trueValue,
-		Topics:                  topics,
-		Visibility:              &defVis,
-		AllowRepositoryDeletion: false,
-		RetainOnDelete:          &trueValue,
-		Protected:               !defaults.GetOrDefault(repository.DeleteOnDestroy, false),
+		NamespaceID:              owner,
+		ConversationResolution:   &trueValue,
+		Topics:                   topics,
+		Visibility:               &defVis,
+		DeletePipelinesInSeconds: &deletePipelinesInSeconds,
+		AllowRepositoryDeletion:  false,
+		RetainOnDelete:           &trueValue,
+		Protected:                !defaults.GetOrDefault(repository.DeleteOnDestroy, false),
 	})
 	if err != nil {
 		return nil, err
