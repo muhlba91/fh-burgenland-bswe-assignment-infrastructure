@@ -12,3 +12,9 @@ const defaultProvider = "none"
 func GitHub(repository *repository.Config) bool {
 	return defaults.GetOrDefault(repository.Provider, defaultProvider) == "github"
 }
+
+// GitLab checks if the given repository configuration is intended for GitLab based on the provider field.
+// repository: The configuration of the repository to check.
+func GitLab(repository *repository.Config) bool {
+	return defaults.GetOrDefault(repository.Provider, defaultProvider) == "gitlab"
+}

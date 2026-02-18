@@ -26,7 +26,7 @@ func createAccess(
 		fmt.Sprintf("github-repository-admin-%s", repository.Name),
 		&github.RepositoryCollaboratorArgs{
 			Repository: repo.Name,
-			Username:   pulumi.String(config.GitHubHandle),
+			Username:   pulumi.String(config.OwnerHandle),
 			Permission: pulumi.String("admin"),
 		},
 	)
@@ -68,6 +68,8 @@ func createAccess(
 // role: The custom repository role.
 func repositoryRoleToGitHubRole(role string) string {
 	switch role {
+	case "owner":
+		return "maintain"
 	case "developer":
 		return "maintain"
 	default:

@@ -79,7 +79,7 @@ func createRole(ctx *pulumi.Context,
 					"StringLike": map[string]any{
 						"token.actions.githubusercontent.com:sub": fmt.Sprintf(
 							"repo:%s/%s:*",
-							config.GitHubOrganization,
+							config.Classroom.Github.Owner,
 							repository,
 						),
 					},
@@ -90,7 +90,7 @@ func createRole(ctx *pulumi.Context,
 
 	ciRole, cirErr := role.Create(ctx, repository, &role.CreateOptions{
 		Name:             pulumi.Sprintf("%s-%s", truncatedRepository, ciPostfix),
-		Description:      pulumi.Sprintf("FH Burgenland Softwaremanagement II GitHub Repository: %s", repository),
+		Description:      pulumi.Sprintf("%s GitHub Repository: %s", config.Classroom.Name, repository),
 		AssumeRolePolicy: pulumi.String(policyDoc),
 		Labels:           tags,
 	})
@@ -122,8 +122,8 @@ func createPolicy(ctx *pulumi.Context,
 				Effect:  &allow,
 				Actions: []string{"s3:*"},
 				Resources: []string{
-					fmt.Sprintf("arn:aws:s3:::bswe-%s-%s-*", config.GlobalName, config.Environment),
-					fmt.Sprintf("arn:aws:s3:::bswe-%s-%s-*/*", config.GlobalName, config.Environment),
+					fmt.Sprintf("arn:aws:s3:::bswe-%s-%s-*", config.Classroom.Tag, config.Environment),
+					fmt.Sprintf("arn:aws:s3:::bswe-%s-%s-*/*", config.Classroom.Tag, config.Environment),
 				},
 			},
 			{
@@ -145,7 +145,7 @@ func createPolicy(ctx *pulumi.Context,
 
 	ciPolicy, cipolErr := policy.Create(ctx, repository, &policy.CreateOptions{
 		Name:        pulumi.Sprintf("%s-%s", truncatedRepository, ciPostfix),
-		Description: pulumi.Sprintf("FH Burgenland Softwaremanagement II GitHub Repository: %s", repository),
+		Description: pulumi.Sprintf("%s GitHub Repository: %s", config.Classroom.Name, repository),
 		Policy:      pulumi.String(policyDoc.Json),
 		Labels:      tags,
 	})

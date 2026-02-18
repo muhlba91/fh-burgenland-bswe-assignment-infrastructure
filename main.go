@@ -4,7 +4,8 @@ import (
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/aws"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/config"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/github/repositories"
-	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/github/team"
+	ghTeam "github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/github/team"
+	glTeam "github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/gitlab/team"
 	harborCfg "github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/harbor"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/terraform"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/export"
@@ -21,9 +22,13 @@ func main() {
 		}
 
 		// teams
-		githubTeams, ghtErr := team.Create(ctx, stackConfig.Teams)
+		githubTeams, ghtErr := ghTeam.Create(ctx, stackConfig.Teams)
 		if ghtErr != nil {
 			return ghtErr
+		}
+		gitlabTeams, gltErr := glTeam.Create(ctx, stackConfig.Teams)
+		if gltErr != nil {
+			return gltErr
 		}
 
 		// repositories
@@ -65,6 +70,7 @@ func main() {
 		}
 
 		export.GitHub(ctx, githubTeams, githubRepositories)
+		export.GitLab(ctx, gitlabTeams, githubRepositories)
 		export.Harbor(ctx, harborProjects, harborRobotAccounts)
 		export.Terraform(ctx, terraform)
 		export.AWS(ctx, aws)

@@ -8,6 +8,7 @@ import (
 	ghConfig "github.com/pulumi/pulumi-github/sdk/v6/go/github/config"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/classroom"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/stack"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/data"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
@@ -17,12 +18,10 @@ import (
 var (
 	// Environment holds the current deployment environment (e.g., dev, staging, prod).
 	Environment string
-	// GlobalName is a constant name used across resources.
-	GlobalName string
-	// GitHubOrganization is the GitHub organization used for resources.
-	GitHubOrganization string
-	// GitHubHandle is the GitHub handle used for resources.
-	GitHubHandle = "muhlba91"
+	// Classroom is a constant name used across resources.
+	Classroom *classroom.Config
+	// OwnerHandle is the owner handle used for resources.
+	OwnerHandle = "muhlba91"
 	// AWSDefaultRegion is the default AWS region for deployments.
 	AWSDefaultRegion = "eu-west-1"
 	// AWSAccountID is the AWS account ID used for deployments.
@@ -40,8 +39,6 @@ func LoadConfig(
 ) (*stack.Config, error) {
 	Environment = ctx.Stack()
 
-	GitHubOrganization = ghConfig.GetOwner(ctx)
-
 	repoDelEnv := strings.ToLower(os.Getenv("ALLOW_REPOSITORY_DELETION"))
 	AllowRepositoryDeletion = defaults.GetOrDefault(&repoDelEnv, "false") == "true"
 
@@ -51,7 +48,15 @@ func LoadConfig(
 	}
 
 	FeatureGates = stackConfig.Features
-	GlobalName = stackConfig.Name
+	Classroom = stackConfig.Classroom
+
+	if ghConfig.GetOwner(ctx) != Classroom.Github.Owner {
+		return nil, fmt.Errorf(
+			"GitHub owner mismatch: expected %s, got %s",
+			Classroom.Github.Owner,
+			ghConfig.GetOwner(ctx),
+		)
+	}
 
 	return stackConfig, nil
 }
@@ -60,6 +65,6 @@ func LoadConfig(
 func CommonLabels() map[string]string {
 	return map[string]string{
 		"environment": Environment,
-		"purpose":     GlobalName,
+		"purpose":     Classroom.Tag,
 	}
 }

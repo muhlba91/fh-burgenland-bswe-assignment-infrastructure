@@ -1,6 +1,7 @@
 package stack
 
 import (
+	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/classroom"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/team"
 )
@@ -8,7 +9,7 @@ import (
 // Config defines stack-related configuration.
 type Config struct {
 	// Name is the name of the stack.
-	Name string `yaml:"classroom"`
+	Classroom *classroom.Config `yaml:"classroom,omitempty"`
 	// Features defines the features to be enabled in the stack.
 	Features []string `yaml:"features,omitempty"`
 	// Repositories defines the repositories to be created in the stack.

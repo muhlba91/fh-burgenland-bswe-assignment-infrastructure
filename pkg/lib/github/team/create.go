@@ -34,8 +34,8 @@ func createTeam(ctx *pulumi.Context, team *teamConf.Config) (*github.Team, error
 	retainOnDelete := pulumi.RetainOnDelete(!defaults.GetOrDefault(team.DeleteOnDestroy, false))
 
 	githubTeam, ghtErr := github.NewTeam(ctx, fmt.Sprintf("github-team-%s", team.Name), &github.TeamArgs{
-		Name:        pulumi.Sprintf("%s-%s-%s", config.GlobalName, config.Environment, team.Name),
-		Description: pulumi.Sprintf("Softwaremanagement II %s: %s", config.Environment, team.Name),
+		Name:        pulumi.Sprintf("%s-%s-%s", config.Classroom.Tag, config.Environment, team.Name),
+		Description: pulumi.Sprintf("%s %s: %s", config.Classroom.Name, config.Environment, team.Name),
 		Privacy:     pulumi.String("secret"),
 	}, retainOnDelete)
 	if ghtErr != nil {
@@ -43,6 +43,10 @@ func createTeam(ctx *pulumi.Context, team *teamConf.Config) (*github.Team, error
 	}
 
 	for _, member := range team.Members {
+		if member == config.OwnerHandle {
+			continue
+		}
+
 		_, gtmErr := github.NewTeamMembership(
 			ctx,
 			fmt.Sprintf("github-team-membership-%s-%s", team.Name, member),

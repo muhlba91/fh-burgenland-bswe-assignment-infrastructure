@@ -73,6 +73,8 @@ func Create(
 // role: repository role as string.
 func repositoryRoleToHarborRole(role string) string {
 	switch role {
+	case "owner":
+		return "maintainer"
 	case "developer":
 		return "maintainer"
 	default:

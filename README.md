@@ -1,10 +1,10 @@
-# FH Burgenland: BSWE - Assignment Infrastructure
+# Hochschule Burgenland: BSWE - Assignment Infrastructure
 
 [![Build status](https://img.shields.io/github/actions/workflow/status/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pipeline.yml?style=for-the-badge)](https://github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/actions/workflows/pipeline.yml)
 [![License](https://img.shields.io/github/license/muhlba91/fh-burgenland-bswe-assignment-infrastructure?style=for-the-badge)](LICENSE.md)
 [![](https://api.scorecard.dev/projects/github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/badge?style=for-the-badge)](https://scorecard.dev/viewer/?uri=github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure)
 
-This repository contains the automation for the required assignment infrastructure for the FH Burgenland "Softwaremanagent II" course using [Pulumi](http://pulumi.com).
+This repository contains the automation for the required assignment infrastructure for the Hochschule Burgenland "Softwaremanagent II" course using [Pulumi](http://pulumi.com).
 
 ---
 

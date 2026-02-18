@@ -35,7 +35,7 @@ func Configure(
 			continue
 		}
 
-		prefix := pulumi.StringPtr(fmt.Sprintf("bswe-%s-%s-%s-", config.GlobalName, config.Environment, repo.Name))
+		prefix := pulumi.StringPtr(fmt.Sprintf("bswe-%s-%s-%s-", config.Classroom.Tag, config.Environment, repo.Name))
 		bucket, err := bucket.Create(ctx, &bucket.CreateOptions{
 			Name:   fmt.Sprintf("terraform-%s-%s", config.Environment, repo.Name),
 			Prefix: &prefix,

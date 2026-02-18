@@ -1,5 +1,11 @@
 ---
-classroom: swm2
+classroom:
+  tag: swm2
+  name: Softwaremanagement 2
+  github:
+    owner: fhburgenland-bswe
+  gitlab:
+    group: 125229927
 features: []
 teams:
   - name: dmuehlbachler
@@ -19,7 +25,7 @@ repositories:
     provider: none
     teams:
       - name: dmuehlbachler
-        role: developer
+        role: owner
     approvers: 2
     deleteOnDestroy: true
     aws: false
@@ -32,7 +38,7 @@ repositories:
     provider: github
     teams:
       - name: dmuehlbachler
-        role: developer
+        role: owner
     approvers: 2
     deleteOnDestroy: true
     aws: false
@@ -45,7 +51,7 @@ repositories:
     provider: gitlab
     teams:
       - name: dmuehlbachler
-        role: developer
+        role: owner
     approvers: 2
     deleteOnDestroy: true
     aws: false

@@ -20,7 +20,7 @@ func Create(ctx *pulumi.Context, teams map[string]*github.Team) (map[string]*har
 
 	for teamName, team := range teams {
 		group, err := harbor.NewGroup(ctx, fmt.Sprintf("harbor-group-%s", teamName), &harbor.GroupArgs{
-			GroupName: pulumi.Sprintf("%s:%s", config.GitHubOrganization, team.Name),
+			GroupName: pulumi.Sprintf("%s:%s", config.Classroom.Github.Owner, team.Name),
 			GroupType: pulumi.Int(defaultGroupType),
 		})
 		if err != nil {
