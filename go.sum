@@ -234,6 +234,8 @@ github.com/pulumi/pulumi/sdk/v3 v3.224.0 h1:z/4vxGI2oO9IY6Jr5pJ5rCCfaF0D9CDMyf71
 github.com/pulumi/pulumi/sdk/v3 v3.224.0/go.mod h1:O6FsKAEKCj3axqPQ6DyMUn/07pN1I2vq9wI1WFEuxnI=
 github.com/pulumi/pulumi/sdk/v3 v3.225.0 h1:I6UJRZmySxVVtJ7fCDE4A6BaHPIy+dzKknSAPNOF+80=
 github.com/pulumi/pulumi/sdk/v3 v3.225.0/go.mod h1:kiwkjulVm9ibqTOcyrZYhaRZsDSxWpzIKPXtCFeffBE=
+github.com/pulumi/pulumi/sdk/v3 v3.225.1 h1:yn64PBZocE0Ums82fc6jaWRZthZ352BFi/tVAs5jrps=
+github.com/pulumi/pulumi/sdk/v3 v3.225.1/go.mod h1:kiwkjulVm9ibqTOcyrZYhaRZsDSxWpzIKPXtCFeffBE=
 github.com/pulumiverse/pulumi-harbor/sdk/v3 v3.10.21 h1:eeZSsBXWdZdSw96pIua2zFi1siR9pamZ/BzFmcVACmc=
 github.com/pulumiverse/pulumi-harbor/sdk/v3 v3.10.21/go.mod h1:TeYFYnMiBjxMLCjGFqDPfaLDkK2jcVBAAiDpY7orezs=
 github.com/pulumiverse/pulumi-time/sdk v0.1.0 h1:xfi9HKDgV+GgDxQ23oSv9KxC3DQqViGTcMrJICRgJv0=
