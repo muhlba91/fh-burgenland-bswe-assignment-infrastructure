@@ -67,7 +67,7 @@ jobs:
           role-to-assume: ${{ env.AWS_IDENTITY_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - uses: pulumi/actions@8582a9e8cc630786854029b4e09281acd6794b58 # v6.6.1
+      - uses: pulumi/actions@8e5e406f4007fca908480587cb9893c07090f58d # v7
         with:
           command: preview
           stack-name: ${{ matrix.stack }}
@@ -134,7 +134,7 @@ jobs:
           role-to-assume: ${{ env.AWS_IDENTITY_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - uses: pulumi/actions@8582a9e8cc630786854029b4e09281acd6794b58 # v6.6.1
+      - uses: pulumi/actions@8e5e406f4007fca908480587cb9893c07090f58d # v7
         with:
           command: up
           stack-name: ${{ matrix.stack }}
