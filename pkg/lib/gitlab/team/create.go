@@ -72,7 +72,7 @@ func createTeam(ctx *pulumi.Context, team *teamConf.Config, parentID pulumi.IntO
 		return gid
 	}).(pulumi.IntOutput)
 
-	for _, member := range team.Members {
+	for _, member := range team.Members.GitLab {
 		if member == config.OwnerHandle {
 			continue
 		}

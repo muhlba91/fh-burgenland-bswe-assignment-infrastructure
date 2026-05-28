@@ -11,7 +11,10 @@ teams:
   - name: dmuehlbachler
     deleteOnDestroy: true
     members:
-      - muhlba91
+      github:
+        - muhlba91
+      gitlab:
+        - muhlba91
 repositories:
   - name: infrastructure-lifecycle
     service: infrastructure-lifecycle

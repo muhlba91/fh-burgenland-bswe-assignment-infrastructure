@@ -42,7 +42,7 @@ func createTeam(ctx *pulumi.Context, team *teamConf.Config) (*github.Team, error
 		return nil, ghtErr
 	}
 
-	for _, member := range team.Members {
+	for _, member := range team.Members.GitHub {
 		if member == config.OwnerHandle {
 			continue
 		}
