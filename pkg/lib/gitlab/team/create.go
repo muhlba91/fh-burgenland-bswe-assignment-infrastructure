@@ -8,7 +8,7 @@ import (
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/config"
 	teamConf "github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/team"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
-	"github.com/pulumi/pulumi-gitlab/sdk/v9/go/gitlab"
+	"github.com/pulumi/pulumi-gitlab/sdk/v10/go/gitlab"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
