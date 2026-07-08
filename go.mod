@@ -7,7 +7,7 @@ require (
 	github.com/pulumi/pulumi-aws/sdk/v7 v7.35.0
 	github.com/pulumi/pulumi-github/sdk/v6 v6.14.0
 	github.com/pulumi/pulumi-gitlab/sdk/v10 v10.0.0
-	github.com/pulumi/pulumi/sdk/v3 v3.250.0
+	github.com/pulumi/pulumi/sdk/v3 v3.251.0
 	github.com/pulumiverse/pulumi-harbor/sdk/v3 v3.10.21
 	github.com/rs/zerolog v1.35.1
 	gopkg.in/yaml.v3 v3.0.1
