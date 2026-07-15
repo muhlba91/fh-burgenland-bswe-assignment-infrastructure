@@ -3,8 +3,8 @@ module github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure
 go 1.26.0
 
 require (
-	github.com/muhlba91/pulumi-shared-library v0.0.0-20260714183654-fb01c15752eb
-	github.com/pulumi/pulumi-aws/sdk/v7 v7.36.0
+	github.com/muhlba91/pulumi-shared-library v0.0.0-20260715162619-47e77e77fe7e
+	github.com/pulumi/pulumi-aws/sdk/v7 v7.37.0
 	github.com/pulumi/pulumi-github/sdk/v6 v6.14.0
 	github.com/pulumi/pulumi-gitlab/sdk/v10 v10.0.0
 	github.com/pulumi/pulumi/sdk/v3 v3.253.0
