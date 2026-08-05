@@ -107,11 +107,13 @@ func writeGitlab(
 		return fmt.Errorf("[secret]repository %s not found in created GitLab projects", name)
 	}
 
+	trueValue := true
 	glSecret.Create(ctx, &glSecret.CreateOptions{
-		Repository: repository,
-		Key:        key,
-		Value:      value,
-		Masked:     &masked,
+		Repository:               repository,
+		Key:                      key,
+		Value:                    value,
+		Masked:                   &masked,
+		DisableVariableExpansion: &trueValue,
 	})
 
 	return nil
