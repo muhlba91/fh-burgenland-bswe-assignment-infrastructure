@@ -55,6 +55,7 @@ func main() {
 			ctx,
 			stackConfig,
 			githubRepositories,
+			gitlabRepositories,
 			githubTeams,
 		)
 		if haErr != nil {

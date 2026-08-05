@@ -25,12 +25,12 @@ repositories:
     teams:
       - name: dmuehlbachler
         role: owner
-    approvers: 2
+    approvers: 1
     deleteOnDestroy: true
-    aws: false
-    pulumi: false
-    terraform: false
-    harbor: false
+    aws: true
+    pulumi: true
+    terraform: true
+    harbor: true
     requiredChecks: []
   - name: test-repository-gl
     service: gitlab-test
@@ -38,12 +38,12 @@ repositories:
     teams:
       - name: dmuehlbachler
         role: owner
-    approvers: 2
+    approvers: 1
     deleteOnDestroy: true
-    aws: false
-    pulumi: false
-    terraform: false
-    harbor: false
+    aws: true
+    pulumi: true
+    terraform: true
+    harbor: true
     requiredChecks: []
   - name: api-specifications
     service: api-specifications

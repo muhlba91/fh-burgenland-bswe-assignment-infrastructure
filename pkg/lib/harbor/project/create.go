@@ -6,8 +6,10 @@ import (
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
+	"github.com/pulumi/pulumi-gitlab/sdk/v10/go/gitlab"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumiverse/pulumi-harbor/sdk/v3/go/harbor"
+	"github.com/rs/zerolog/log"
 )
 
 // defaultStorageQuota defines the default storage quota for Harbor projects in GB.
@@ -17,11 +19,13 @@ const defaultStorageQuota = 10
 // ctx: pulumi.Context.
 // repositories: list of repository configurations.
 // githubRepositories: map of created GitHub repositories.
+// gitlabRepositories: map of created GitLab projects.
 // groups: map of created Harbor groups.
 func Create(
 	ctx *pulumi.Context,
 	repositories []*repository.Config,
 	githubRepositories map[string]*github.Repository,
+	gitlabRepositories map[string]*gitlab.Project,
 	groups map[string]*harbor.Group,
 ) map[string]*harbor.ProjectOutput {
 	harborProjects := make(map[string]*harbor.ProjectOutput)
@@ -31,12 +35,22 @@ func Create(
 			continue
 		}
 
-		githubRepo, ok := githubRepositories[repoConfig.Name]
-		if !ok {
-			return nil
+		var repoName *pulumi.StringOutput
+		ghRepo, ghExists := githubRepositories[repoConfig.Name]
+		if ghExists {
+			repoName = &ghRepo.Name
+		}
+		glRepo, glExists := gitlabRepositories[repoConfig.Name]
+		if glExists {
+			repoName = &glRepo.Name
+		}
+		if repoName == nil {
+			log.Warn().
+				Msgf("github or gitlab repository for repository %s does not exist. skipping project creation.", repoConfig.Name)
+			continue
 		}
 
-		project, _ := githubRepo.Name.ApplyT(func(name string) *harbor.Project {
+		project, _ := repoName.ApplyT(func(name string) *harbor.Project {
 			project, _ := harbor.NewProject(ctx, fmt.Sprintf("harbor-project-%s", name), &harbor.ProjectArgs{
 				Name:                  pulumi.String(name),
 				Public:                pulumi.Bool(false),

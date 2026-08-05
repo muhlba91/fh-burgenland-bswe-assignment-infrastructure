@@ -9,19 +9,23 @@ import (
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/secret"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
+	"github.com/pulumi/pulumi-gitlab/sdk/v10/go/gitlab"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumiverse/pulumi-harbor/sdk/v3/go/harbor"
+	"github.com/rs/zerolog/log"
 )
 
 // Create configures Harbor robot accounts for the given repositories.
 // ctx: The Pulumi context.
 // repositories: The list of repository configurations.
 // githubRepositories: A map of GitHub repository names to their corresponding Pulumi GitHub Repository resources.
+// gitlabRepositories: A map of GitLab project names to their corresponding Pulumi GitLab Project resources.
 // projects: A map of Harbor project names to their corresponding Pulumi Harbor Project resources.
 func Create(
 	ctx *pulumi.Context,
 	repositories []*repository.Config,
 	githubRepositories map[string]*github.Repository,
+	gitlabRepositories map[string]*gitlab.Project,
 	projects map[string]*harbor.ProjectOutput,
 ) (map[string]*pulumi.StringOutput, error) {
 	harborRobotAccounts := make(map[string]*pulumi.StringOutput)
@@ -31,11 +35,29 @@ func Create(
 			continue
 		}
 
-		project := projects[repoConfig.Name]
+		project, exists := projects[repoConfig.Name]
+		if !exists {
+			log.Warn().
+				Msgf("harbor project for repository %s does not exist. skipping robot account creation.", repoConfig.Name)
+			continue
+		}
 
-		ghRepo := githubRepositories[repoConfig.Name]
+		var repoName *pulumi.StringOutput
+		ghRepo, ghExists := githubRepositories[repoConfig.Name]
+		if ghExists {
+			repoName = &ghRepo.Name
+		}
+		glRepo, glExists := gitlabRepositories[repoConfig.Name]
+		if glExists {
+			repoName = &glRepo.Name
+		}
+		if repoName == nil {
+			log.Warn().
+				Msgf("github or gitlab repository for repository %s does not exist. skipping robot account creation.", repoConfig.Name)
+			continue
+		}
 
-		robot := ghRepo.Name.ApplyT(func(name string) *harbor.RobotAccount {
+		robot := repoName.ApplyT(func(name string) *harbor.RobotAccount {
 			projectName, _ := project.ApplyT(func(p *harbor.Project) pulumi.StringOutput {
 				return p.Name
 			}).(pulumi.StringOutput)
