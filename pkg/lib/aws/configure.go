@@ -6,6 +6,7 @@ import (
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/iam"
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
+	"github.com/pulumi/pulumi-gitlab/sdk/v10/go/gitlab"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/rs/zerolog/log"
 )
@@ -14,9 +15,11 @@ import (
 // ctx: Pulumi context for resource management.
 // repositories: List of repository configurations.
 // githubRepositories: list of created GitHub repositories.
+// gitlabRepositories: list of created GitLab projects.
 func Configure(ctx *pulumi.Context,
 	repositories []*repository.Config,
 	githubRepositories map[string]*github.Repository,
+	gitlabRepositories map[string]*gitlab.Project,
 ) (map[string]*pulumi.StringOutput, error) {
 	accounts := make(map[string]*pulumi.StringOutput)
 
@@ -38,7 +41,7 @@ func Configure(ctx *pulumi.Context,
 			continue
 		}
 
-		roleArn := createAccountIAM(ctx, repo, identityProvider.Arn, githubRepositories)
+		roleArn := createAccountIAM(ctx, repo, identityProvider.Arn, githubRepositories, gitlabRepositories)
 		accounts[repo.Name] = &roleArn
 	}
 

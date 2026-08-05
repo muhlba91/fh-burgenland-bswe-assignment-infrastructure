@@ -63,13 +63,13 @@ func main() {
 		}
 
 		// terraform integration
-		terraform, tfErr := terraform.Configure(ctx, stackConfig.Repositories, githubRepositories)
+		terraform, tfErr := terraform.Configure(ctx, stackConfig.Repositories, githubRepositories, gitlabRepositories)
 		if tfErr != nil {
 			return tfErr
 		}
 
 		// aws integration
-		aws, awsErr := aws.Configure(ctx, stackConfig.Repositories, githubRepositories)
+		aws, awsErr := aws.Configure(ctx, stackConfig.Repositories, githubRepositories, gitlabRepositories)
 		if awsErr != nil {
 			return awsErr
 		}

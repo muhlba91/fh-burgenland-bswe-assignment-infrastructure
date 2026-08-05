@@ -94,15 +94,23 @@ func Create(
 		robotName, _ := robot.ApplyT(func(r *harbor.RobotAccount) pulumi.StringOutput { return r.FullName }).(pulumi.StringOutput)
 		robotSecret, _ := robot.ApplyT(func(r *harbor.RobotAccount) pulumi.StringOutput { return r.Secret }).(pulumi.StringOutput)
 
-		_ = secret.Write(
+		_ = secret.WriteUnmasked(
 			ctx,
 			repoConfig,
 			githubRepositories,
+			gitlabRepositories,
 			"HARBOR_REGISTRY_URL",
 			pulumi.String(strings.ReplaceAll(os.Getenv("HARBOR_URL"), "https://", "")),
 		)
-		_ = secret.Write(ctx, repoConfig, githubRepositories, "HARBOR_ROBOT_NAME", robotName)
-		_ = secret.Write(ctx, repoConfig, githubRepositories, "HARBOR_ROBOT_SECRET", robotSecret)
+		_ = secret.WriteUnmasked(
+			ctx,
+			repoConfig,
+			githubRepositories,
+			gitlabRepositories,
+			"HARBOR_ROBOT_NAME",
+			robotName,
+		)
+		_ = secret.Write(ctx, repoConfig, githubRepositories, gitlabRepositories, "HARBOR_ROBOT_SECRET", robotSecret)
 	}
 
 	return harborRobotAccounts, nil

@@ -12,6 +12,7 @@ import (
 	"github.com/muhlba91/pulumi-shared-library/pkg/lib/random"
 	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/iam"
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
+	"github.com/pulumi/pulumi-gitlab/sdk/v10/go/gitlab"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,10 +21,12 @@ import (
 // repository: The name of the GitHub repository for which to create the IAM role.
 // identityProviderArn: ARN of the AWS IAM Identity Provider for GitHub OIDC.
 // githubRepositories: Map of created GitHub repositories to ensure the repository exists before creating IAM roles.
+// gitlabRepositories: Map of created GitLab projects to ensure the project exists before creating IAM roles.
 func createAccountIAM(ctx *pulumi.Context,
 	repository *repository.Config,
 	identityProviderArn string,
 	githubRepositories map[string]*github.Repository,
+	gitlabRepositories map[string]*gitlab.Project,
 ) pulumi.StringOutput {
 	tags := config.CommonLabels()
 	tags["organization"] = "fh-burgenland-bswe"
@@ -42,8 +45,22 @@ func createAccountIAM(ctx *pulumi.Context,
 	ciRole, _ := createRole(ctx, repository.Name, identityProviderArn, tags, truncatedRepository, postfix.Text)
 	_ = createPolicy(ctx, repository.Name, ciRole, tags, truncatedRepository, postfix.Text)
 
-	_ = secret.Write(ctx, repository, githubRepositories, "AWS_IDENTITY_ROLE_ARN", ciRole.Arn)
-	_ = secret.Write(ctx, repository, githubRepositories, "AWS_REGION", pulumi.String(config.AWSDefaultRegion))
+	_ = secret.WriteUnmasked(
+		ctx,
+		repository,
+		githubRepositories,
+		gitlabRepositories,
+		"AWS_IDENTITY_ROLE_ARN",
+		ciRole.Arn,
+	)
+	_ = secret.WriteUnmasked(
+		ctx,
+		repository,
+		githubRepositories,
+		gitlabRepositories,
+		"AWS_REGION",
+		pulumi.String(config.AWSDefaultRegion),
+	)
 
 	return ciRole.Arn
 }

@@ -10,6 +10,7 @@ import (
 	"github.com/muhlba91/pulumi-shared-library/pkg/lib/aws/s3/bucket"
 	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
+	"github.com/pulumi/pulumi-gitlab/sdk/v10/go/gitlab"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/rs/zerolog/log"
 )
@@ -18,10 +19,12 @@ import (
 // ctx: pulumi.Context.
 // repositories: list of repository configurations.
 // githubRepositories: list of created GitHub repositories.
+// gitlabRepositories: list of created GitLab projects.
 func Configure(
 	ctx *pulumi.Context,
 	repositories []*repository.Config,
 	githubRepositories map[string]*github.Repository,
+	gitlabRepositories map[string]*gitlab.Project,
 ) (map[string]*pulumi.StringOutput, error) {
 	buckets := make(map[string]*pulumi.StringOutput)
 
@@ -45,7 +48,14 @@ func Configure(
 			return nil, err
 		}
 
-		_ = secret.Write(ctx, repo, githubRepositories, "TERRAFORM_BACKEND_BUCKET", bucket.Bucket)
+		_ = secret.WriteUnmasked(
+			ctx,
+			repo,
+			githubRepositories,
+			gitlabRepositories,
+			"TERRAFORM_BACKEND_BUCKET",
+			bucket.Bucket,
+		)
 
 		buckets[repo.Name] = &bucket.Bucket
 	}
