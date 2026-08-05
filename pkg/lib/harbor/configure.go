@@ -61,5 +61,10 @@ func Configure(
 		return nil, nil, hrErr
 	}
 
+	hrrErr := robot.CreateCluster(ctx)
+	if hrrErr != nil {
+		return nil, nil, hrrErr
+	}
+
 	return harborProjects, harborRobotAccounts, nil
 }

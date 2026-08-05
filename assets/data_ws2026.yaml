@@ -6,6 +6,7 @@ classroom:
     owner: fhburgenland-bswe
   gitlab:
     group: 125229927
+  vault: kubernetes-hochschule-burgenland-cluster
 features:
   - harbor
   - terraform

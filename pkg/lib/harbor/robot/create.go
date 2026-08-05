@@ -2,8 +2,6 @@ package robot
 
 import (
 	"fmt"
-	"os"
-	"strings"
 
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/util/secret"
@@ -100,7 +98,7 @@ func Create(
 			githubRepositories,
 			gitlabRepositories,
 			"HARBOR_REGISTRY_URL",
-			pulumi.String(strings.ReplaceAll(os.Getenv("HARBOR_URL"), "https://", "")),
+			pulumi.String(harborURL()),
 		)
 		_ = secret.WriteUnmasked(
 			ctx,

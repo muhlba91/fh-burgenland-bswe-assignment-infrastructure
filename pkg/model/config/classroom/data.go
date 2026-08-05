@@ -10,6 +10,8 @@ type Config struct {
 	Github *GithubConfig `yaml:"github,omitempty"`
 	// Gitlab defines the GitLab configuration for the classroom.
 	Gitlab *GitlabConfig `yaml:"gitlab,omitempty"`
+	// Vault defines the Vault mount for the classroom.
+	Vault *string `yaml:"vault,omitempty"`
 }
 
 // GithubConfig defines the GitHub configuration for the classroom.
