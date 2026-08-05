@@ -31,15 +31,9 @@ func Create(
 			continue
 		}
 
-		project, exists := projects[repoConfig.Name]
-		if !exists {
-			return nil, fmt.Errorf("harbor project %s not found for harbor robot account creation", repoConfig.Name)
-		}
+		project := projects[repoConfig.Name]
 
-		ghRepo, exists := githubRepositories[repoConfig.Name]
-		if !exists {
-			return nil, fmt.Errorf("github repository %s not found for harbor robot account creation", repoConfig.Name)
-		}
+		ghRepo := githubRepositories[repoConfig.Name]
 
 		robot := ghRepo.Name.ApplyT(func(name string) *harbor.RobotAccount {
 			projectName, _ := project.ApplyT(func(p *harbor.Project) pulumi.StringOutput {

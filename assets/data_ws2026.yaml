@@ -19,7 +19,7 @@ teams:
       gitlab:
         - muhlba91
 repositories:
-  - name: test-repository
+  - name: test-repository-gh
     service: github-test
     provider: github
     teams:
@@ -32,7 +32,7 @@ repositories:
     terraform: false
     harbor: false
     requiredChecks: []
-  - name: test-repository-gitlab
+  - name: test-repository-gl
     service: gitlab-test
     provider: gitlab
     teams:

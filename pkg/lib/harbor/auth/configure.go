@@ -12,6 +12,7 @@ import (
 func Configure(ctx *pulumi.Context) error {
 	_, err := harbor.NewConfigAuth(ctx, "harbor-auth-dex", &harbor.ConfigAuthArgs{
 		AuthMode:         pulumi.String("oidc_auth"),
+		PrimaryAuthMode:  pulumi.Bool(true),
 		OidcAutoOnboard:  pulumi.Bool(true),
 		OidcClientId:     pulumi.String("registry"),
 		OidcClientSecret: pulumi.String(os.Getenv("DEX_REGISTRY_CLIENT_SECRET")),

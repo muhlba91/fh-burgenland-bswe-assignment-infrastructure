@@ -9,6 +9,7 @@ import (
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/config"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
 	libRuleset "github.com/muhlba91/pulumi-shared-library/pkg/lib/github/ruleset"
+	"github.com/muhlba91/pulumi-shared-library/pkg/util/defaults"
 )
 
 // createRuleset creates a branch ruleset for the given repository based on the provided configuration.
@@ -21,15 +22,18 @@ func createRuleset(
 	repo *github.Repository,
 ) error {
 	wipIntegration := false
+	deleteOnDestroy := defaults.GetOrDefault(repository.DeleteOnDestroy, false)
+
 	_, err := libRuleset.Create(
 		ctx,
 		fmt.Sprintf("%s-%s", config.Environment, repository.Name),
 		&libRuleset.CreateOptions{
-			Repository:     repo,
-			Patterns:       []string{libRuleset.DefaultBranchRulesetPattern},
-			ReviewerCount:  repository.Approvers,
-			RequiredChecks: repository.RequiredChecks,
-			WIPIntegration: &wipIntegration,
+			Repository:      repo,
+			Patterns:        []string{libRuleset.DefaultBranchRulesetPattern},
+			ReviewerCount:   repository.Approvers,
+			RequiredChecks:  repository.RequiredChecks,
+			WIPIntegration:  &wipIntegration,
+			DeleteOnDestroy: &deleteOnDestroy,
 		},
 	)
 	return err

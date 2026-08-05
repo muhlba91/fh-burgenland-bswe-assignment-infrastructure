@@ -73,8 +73,9 @@ func create(
 		}
 	}
 
-	defVis := defaultVisibility
 	trueValue := true
+	defVis := defaultVisibility
+	retainOnDelete := !defaults.GetOrDefault(repository.DeleteOnDestroy, false)
 	deletePipelinesInSeconds := defaultDeletePipelinesInSeconds
 	repo, err := libRepo.Create(ctx, repository.Name, &libRepo.CreateOptions{
 		Name: pulumi.Sprintf("%s-%s-%s", config.Classroom.Tag, config.Environment, repository.Name),
@@ -90,8 +91,8 @@ func create(
 		Visibility:               &defVis,
 		DeletePipelinesInSeconds: &deletePipelinesInSeconds,
 		AllowRepositoryDeletion:  false,
-		RetainOnDelete:           &trueValue,
-		Protected:                !defaults.GetOrDefault(repository.DeleteOnDestroy, false),
+		RetainOnDelete:           &retainOnDelete,
+		Protected:                retainOnDelete,
 	})
 	if err != nil {
 		return nil, err
