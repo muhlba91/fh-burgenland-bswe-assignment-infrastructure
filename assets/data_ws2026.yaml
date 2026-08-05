@@ -1,0 +1,72 @@
+---
+classroom:
+  tag: swm2
+  name: Softwaremanagement 2
+  github:
+    owner: fhburgenland-bswe
+  gitlab:
+    group: 125229927
+features:
+  - harbor
+  - terraform
+  - aws
+teams:
+  - name: dmuehlbachler
+    deleteOnDestroy: true
+    members:
+      github:
+        - muhlba91
+      gitlab:
+        - muhlba91
+repositories:
+  - name: test-repository
+    service: github-test
+    provider: github
+    teams:
+      - name: dmuehlbachler
+        role: owner
+    approvers: 2
+    deleteOnDestroy: true
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: test-repository-gitlab
+    service: gitlab-test
+    provider: gitlab
+    teams:
+      - name: dmuehlbachler
+        role: owner
+    approvers: 2
+    deleteOnDestroy: true
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: api-specifications
+    service: api-specifications
+    provider: github
+    teams: []
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks:
+      - Conform
+      - Spectral Linter
+      - YAMLLint
+  - name: kubernetes-applications
+    service: kubernetes-applications
+    provider: github
+    teams: []
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks:
+      - Conform
+      - YAMLLint
