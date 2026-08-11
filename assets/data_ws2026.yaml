@@ -57,8 +57,8 @@ repositories:
     harbor: false
     requiredChecks:
       - Conform
-      - Spectral Linter
-      - YAMLLint
+      - Lint OpenAPI Specifications
+      - Lint Documentation YAML
   - name: kubernetes-applications
     service: kubernetes-applications
     provider: github
@@ -71,3 +71,4 @@ repositories:
     requiredChecks:
       - Conform
       - YAMLLint
+      - Kubeconform
