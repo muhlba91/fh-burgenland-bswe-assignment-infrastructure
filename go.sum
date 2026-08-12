@@ -158,6 +158,8 @@ github.com/muhlba91/pulumi-shared-library v0.0.0-20260807190235-a420a3ef720a h1:
 github.com/muhlba91/pulumi-shared-library v0.0.0-20260807190235-a420a3ef720a/go.mod h1:2VVHlpD1xIZBwKZ2hJ8s2TgrP9QT53xWVfIypjh12nc=
 github.com/muhlba91/pulumi-shared-library v0.0.0-20260810185946-91a89ae5777b h1:8TbBfAuUsYty92OIfQ7wMQNf4OkUQddqBvyTJoqVtSg=
 github.com/muhlba91/pulumi-shared-library v0.0.0-20260810185946-91a89ae5777b/go.mod h1:UstwzstpIyN3zdY9MxNOV+BiEcPBQc2QnV/XNXFnCWw=
+github.com/muhlba91/pulumi-shared-library v0.0.0-20260812062730-b9620c7e3867 h1:snjfYND/8sCXAxUE8YreX462aWU5M4QTZOgBKORjkrE=
+github.com/muhlba91/pulumi-shared-library v0.0.0-20260812062730-b9620c7e3867/go.mod h1:8eDo6n1sYhrXwH63OtlPOklwaYN5xFDp9WjGCN6xE9U=
 github.com/opentracing/basictracer-go v1.1.0 h1:Oa1fTSBvAl8pa3U+IJYqrKm0NALwH9OsgwOqDv4xJW0=
 github.com/opentracing/basictracer-go v1.1.0/go.mod h1:V2HZueSJEp879yv285Aap1BS69fQMD+MNP1mRs6mBQc=
 github.com/opentracing/opentracing-go v1.1.0/go.mod h1:UkNAQd3GIcIGf0SeVgPpRdFStlNbqXla1AfSYxPUl2o=
@@ -190,6 +192,8 @@ github.com/pulumi/pulumi-random/sdk/v4 v4.21.1 h1:pqvBaBMwFPP3DV8BYh/f45V4A62kFq
 github.com/pulumi/pulumi-random/sdk/v4 v4.21.1/go.mod h1:4Q2jFqgCimgOQxvWntZSnV6u8+JhCkPHewloJQfLoeQ=
 github.com/pulumi/pulumi-vault/sdk/v7 v7.11.0 h1:JK8l5f3nmdUM0UAaJoFsQEo93NKqAZjlpdMfdYmUiPY=
 github.com/pulumi/pulumi-vault/sdk/v7 v7.11.0/go.mod h1:ZABGItjLDVMbS5CmOtWjWwD4tDNhd7nSXQuHPjQyX6o=
+github.com/pulumi/pulumi-vault/sdk/v7 v7.11.1 h1:FZ06vtfGKIqkSSwq68LveFqH+6zaR/ksdJUyhzVY1bA=
+github.com/pulumi/pulumi-vault/sdk/v7 v7.11.1/go.mod h1:HxseA2SYxIsTJCcknPb+EanxA/WheL/N1oqN3OMxHIk=
 github.com/pulumi/pulumi/sdk/v3 v3.256.0 h1:OrkIu7Iw3HUcMtoEy2uzpD21C32B5EYBLBgBoh/uQPM=
 github.com/pulumi/pulumi/sdk/v3 v3.256.0/go.mod h1:pyX/FL1Ta3mn4UPfYh2LKG+q/90i2+Jnl0OX4cS+b9U=
 github.com/pulumiverse/pulumi-harbor/sdk/v3 v3.10.21 h1:eeZSsBXWdZdSw96pIua2zFi1siR9pamZ/BzFmcVACmc=
