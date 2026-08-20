@@ -41,7 +41,7 @@ func CreateCluster(
 		},
 	})
 
-	vaultValue, _ := (pulumi.All(ra.FullName, ra.Secret).ApplyT(func(args []any) string {
+	vaultValue, _ := pulumi.All(ra.FullName, ra.Secret).ApplyT(func(args []any) string {
 		name, ok := args[0].(string)
 		if !ok {
 			log.Error().Msgf("[harbor] failed to cast robot name for %s", name)
@@ -71,7 +71,7 @@ func CreateCluster(
 			log.Error().Err(errMarshal).Msgf("[harbor] failed to marshal credentials for %s", name)
 		}
 		return string(data)
-	})).(pulumi.StringOutput)
+	}).(pulumi.StringOutput)
 
 	_, errVault := secret.Create(ctx, &secret.CreateOptions{
 		Key:   "registry-credentials",
