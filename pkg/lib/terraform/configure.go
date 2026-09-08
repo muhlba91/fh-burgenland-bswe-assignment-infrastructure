@@ -34,7 +34,7 @@ func Configure(
 	}
 
 	for _, repo := range repositories {
-		if !defaults.GetOrDefault(repo.Terraform, false) {
+		if !defaults.GetOrDefault(repo.Enabled, true) || !defaults.GetOrDefault(repo.Terraform, false) {
 			continue
 		}
 

@@ -36,7 +36,7 @@ func Create(
 		project, exists := projects[repoConfig.Name]
 		if !exists {
 			log.Warn().
-				Msgf("harbor project for repository %s does not exist. skipping robot account creation.", repoConfig.Name)
+				Msgf("[harbor][robot] harbor project for repository %s does not exist. skipping robot account creation.", repoConfig.Name)
 			continue
 		}
 
@@ -51,7 +51,7 @@ func Create(
 		}
 		if repoName == nil {
 			log.Warn().
-				Msgf("github or gitlab repository for repository %s does not exist. skipping robot account creation.", repoConfig.Name)
+				Msgf("[harbor][robot] github or gitlab repository for repository %s does not exist. skipping robot account creation.", repoConfig.Name)
 			continue
 		}
 

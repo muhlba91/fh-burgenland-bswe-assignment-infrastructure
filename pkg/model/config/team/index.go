@@ -2,6 +2,8 @@ package team
 
 // Config defines team-related configuration.
 type Config struct {
+	// Enabled indicates whether the team is enabled.
+	Enabled *bool `yaml:"enabled"`
 	// Name is the name of the team.
 	Name string `yaml:"name"`
 	// DeleteOnDestroy indicates whether the team should be deleted when the stack is destroyed.

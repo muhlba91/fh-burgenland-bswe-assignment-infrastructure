@@ -19,7 +19,7 @@ func CreateCluster(
 	ctx *pulumi.Context,
 ) error {
 	if config.Classroom.Vault == nil || *config.Classroom.Vault == "" {
-		log.Info().Msg("[harbor] vault is disabled, skipping harbor cluster robot account creation")
+		log.Info().Msg("[harbor][robot] vault is disabled, skipping harbor cluster robot account creation")
 		return nil
 	}
 
@@ -44,11 +44,11 @@ func CreateCluster(
 	vaultValue, _ := pulumi.All(ra.FullName, ra.Secret).ApplyT(func(args []any) string {
 		name, ok := args[0].(string)
 		if !ok {
-			log.Error().Msgf("[harbor] failed to cast robot name for %s", name)
+			log.Error().Msgf("[harbor][robot] failed to cast robot name for %s", name)
 		}
 		secretKey, ok := args[1].(string)
 		if !ok {
-			log.Error().Msgf("[harbor] failed to cast robot secret for %s", name)
+			log.Error().Msgf("[harbor][robot] failed to cast robot secret for %s", name)
 		}
 		dockerconfigjson, errDCMarshal := json.Marshal(map[string]map[string]map[string]string{
 			"auths": {
@@ -60,7 +60,7 @@ func CreateCluster(
 			},
 		})
 		if errDCMarshal != nil {
-			log.Error().Err(errDCMarshal).Msgf("[harbor] failed to marshal dockerconfigjson for %s", name)
+			log.Error().Err(errDCMarshal).Msgf("[harbor][robot] failed to marshal dockerconfigjson for %s", name)
 		}
 		data, errMarshal := json.Marshal(map[string]string{
 			"name":             name,
@@ -68,7 +68,7 @@ func CreateCluster(
 			"dockerconfigjson": encoding.B64Encode(string(dockerconfigjson)),
 		})
 		if errMarshal != nil {
-			log.Error().Err(errMarshal).Msgf("[harbor] failed to marshal credentials for %s", name)
+			log.Error().Err(errMarshal).Msgf("[harbor][robot] failed to marshal credentials for %s", name)
 		}
 		return string(data)
 	}).(pulumi.StringOutput)

@@ -6,6 +6,7 @@ import (
 
 	"github.com/pulumi/pulumi-gitlab/sdk/v10/go/gitlab"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/rs/zerolog/log"
 
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
 )
@@ -20,7 +21,7 @@ func createAccess(
 	repository *repository.Config,
 	repo *gitlab.Project,
 	gitlabTeams map[string]*gitlab.Group,
-) error {
+) {
 	for _, team := range repository.Teams {
 		role := repositoryRoleToGitLabRole(team.Role)
 		if len(role) == 0 {
@@ -29,8 +30,10 @@ func createAccess(
 
 		glTeam, exists := gitlabTeams[team.Name]
 		if !exists {
-			return fmt.Errorf("team %s not found for repository %s", team.Name, repository.Name)
+			log.Error().Msgf("[gitlab][repository] team %s not found for repository %s", team.Name, repository.Name)
+			continue
 		}
+
 		teamID, _ := glTeam.ID().ToStringOutput().ApplyT(func(id string) int {
 			gid, _ := strconv.Atoi(id)
 			return gid
@@ -51,8 +54,6 @@ func createAccess(
 			return tcErr
 		})
 	}
-
-	return nil
 }
 
 // repositoryRoleToGitLabRole maps a custom repository role to a GitLab permission string.

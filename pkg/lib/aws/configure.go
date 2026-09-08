@@ -37,7 +37,7 @@ func Configure(ctx *pulumi.Context,
 	}
 
 	for _, repo := range repositories {
-		if !defaults.GetOrDefault(repo.AWS, false) {
+		if !defaults.GetOrDefault(repo.Enabled, true) || !defaults.GetOrDefault(repo.AWS, false) {
 			continue
 		}
 

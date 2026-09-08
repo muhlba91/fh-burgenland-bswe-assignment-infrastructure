@@ -65,12 +65,14 @@ Repositories and teams are defined in YAML format in the file `assets/data_<stac
 ---
 teams:
   - name: name
+    enabled: true # enables or disables the team (optional, default: true)
     deleteOnDestroy: false # deletes the team on stack destroy (optional, default: false)
     members:
       - user-a
       - user-b
 repositories:
   - name: name
+    enabled: true # enables or disables the repository (optional, default: true)
     service: service # the service name
     teams: # provides access to the repository
       - name: team-a

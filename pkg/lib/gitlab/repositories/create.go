@@ -32,7 +32,7 @@ func Create(
 	repos := make(map[string]*gitlab.Project)
 
 	for _, repo := range repositories {
-		if !provider.GitLab(repo) {
+		if !defaults.GetOrDefault(repo.Enabled, true) || !provider.GitLab(repo) {
 			continue
 		}
 
@@ -103,10 +103,7 @@ func create(
 		return nil, rsErr
 	}
 
-	raErr := createAccess(ctx, repository, repo, gitlabTeams)
-	if raErr != nil {
-		return nil, raErr
-	}
+	createAccess(ctx, repository, repo, gitlabTeams)
 
 	return repo, nil
 }

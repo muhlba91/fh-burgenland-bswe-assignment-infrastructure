@@ -17,6 +17,10 @@ func Create(ctx *pulumi.Context, teams []*teamConf.Config) (map[string]*github.T
 	createdTeams := make(map[string]*github.Team)
 
 	for _, team := range teams {
+		if !defaults.GetOrDefault(team.Enabled, true) {
+			continue
+		}
+
 		githubTeam, err := createTeam(ctx, team)
 		if err != nil {
 			return nil, err

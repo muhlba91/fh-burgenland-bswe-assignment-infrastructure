@@ -46,7 +46,7 @@ func Create(
 		}
 		if repoName == nil {
 			log.Warn().
-				Msgf("github or gitlab repository for repository %s does not exist. skipping project creation.", repoConfig.Name)
+				Msgf("[harbor][project] github or gitlab repository for repository %s does not exist. skipping project creation.", repoConfig.Name)
 			continue
 		}
 

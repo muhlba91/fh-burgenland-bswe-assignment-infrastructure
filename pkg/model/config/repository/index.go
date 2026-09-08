@@ -2,6 +2,8 @@ package repository
 
 // Config defines Repository-related configuration.
 type Config struct {
+	// Enabled indicates whether the repository configuration is enabled.
+	Enabled *bool `yaml:"enabled"`
 	// Provider is the name of the repository provider (e.g., GitHub, GitLab).
 	Provider *string `yaml:"provider,omitempty"`
 	// Name is the name of the repository.

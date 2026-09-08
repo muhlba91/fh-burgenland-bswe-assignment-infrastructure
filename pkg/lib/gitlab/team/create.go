@@ -38,6 +38,10 @@ func Create(ctx *pulumi.Context, teams []*teamConf.Config) (map[string]*gitlab.G
 	}).(pulumi.IntOutput)
 
 	for _, team := range teams {
+		if !defaults.GetOrDefault(team.Enabled, true) {
+			continue
+		}
+
 		gitlabTeam, err := createTeam(ctx, team, envGroupID)
 		if err != nil {
 			return nil, err

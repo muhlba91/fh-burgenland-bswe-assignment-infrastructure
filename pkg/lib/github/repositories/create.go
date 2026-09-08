@@ -28,7 +28,7 @@ func Create(
 	repos := make(map[string]*github.Repository)
 
 	for _, repo := range repositories {
-		if !provider.GitHub(repo) {
+		if !defaults.GetOrDefault(repo.Enabled, true) || !provider.GitHub(repo) {
 			continue
 		}
 

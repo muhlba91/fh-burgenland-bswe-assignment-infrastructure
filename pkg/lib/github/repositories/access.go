@@ -5,6 +5,7 @@ import (
 
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/rs/zerolog/log"
 
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/lib/config"
 	"github.com/muhlba91/fh-burgenland-bswe-assignment-infrastructure/pkg/model/config/repository"
@@ -42,7 +43,8 @@ func createAccess(
 
 		ghTeam, exists := githubTeams[team.Name]
 		if !exists {
-			return fmt.Errorf("team %s not found for repository %s", team.Name, repository.Name)
+			log.Error().Msgf("[github][repository] team %s not found for repository %s", team.Name, repository.Name)
+			continue
 		}
 
 		_ = repo.Name.ApplyT(func(name string) error {
