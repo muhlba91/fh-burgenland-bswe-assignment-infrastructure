@@ -19,6 +19,26 @@ teams:
         - muhlba91
       gitlab:
         - muhlba91
+  - name: group-a
+    enabled: false
+    members:
+      github: []
+      gitlab: []
+  - name: group-b
+    enabled: false
+    members:
+      github: []
+      gitlab: []
+  - name: group-c
+    enabled: false
+    members:
+      github: []
+      gitlab: []
+  - name: group-d
+    enabled: false
+    members:
+      github: []
+      gitlab: []
 repositories:
   - name: test-repository-gh
     service: github-test
@@ -49,7 +69,15 @@ repositories:
   - name: api-specifications
     service: api-specifications
     provider: github
-    teams: []
+    teams:
+      - name: group-a
+        role: developer
+      - name: group-b
+        role: developer
+      - name: group-c
+        role: developer
+      - name: group-d
+        role: developer
     approvers: 2
     aws: false
     pulumi: false
@@ -62,7 +90,15 @@ repositories:
   - name: kubernetes-applications
     service: kubernetes-applications
     provider: github
-    teams: []
+    teams:
+      - name: group-a
+        role: developer
+      - name: group-b
+        role: developer
+      - name: group-c
+        role: developer
+      - name: group-d
+        role: developer
     approvers: 2
     aws: false
     pulumi: false
@@ -72,3 +108,175 @@ repositories:
       - Conform
       - YAMLLint
       - Kubeconform
+  - name: group-a-cpo
+    enabled: false
+    service: cpo
+    provider: github
+    teams:
+      - name: group-a
+        role: developer
+      - name: group-d
+        role: viewer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-a-integrator
+    enabled: false
+    service: integrator
+    provider: gitlab
+    teams:
+      - name: group-a
+        role: owner
+      - name: group-d
+        role: viewer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-a-frontend
+    enabled: false
+    service: integrator
+    provider: none
+    teams:
+      - name: group-a
+        role: developer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-b-cpo
+    enabled: false
+    service: cpo
+    provider: github
+    teams:
+      - name: group-b
+        role: developer
+      - name: group-c
+        role: viewer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-b-integrator
+    enabled: false
+    service: integrator
+    provider: gitlab
+    teams:
+      - name: group-b
+        role: owner
+      - name: group-c
+        role: viewer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-b-frontend
+    enabled: false
+    service: integrator
+    provider: none
+    teams:
+      - name: group-b
+        role: developer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-c-cpo
+    enabled: false
+    service: cpo
+    provider: github
+    teams:
+      - name: group-c
+        role: developer
+      - name: group-b
+        role: viewer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-c-integrator
+    enabled: false
+    service: integrator
+    provider: gitlab
+    teams:
+      - name: group-c
+        role: owner
+      - name: group-b
+        role: viewer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-c-frontend
+    enabled: false
+    service: integrator
+    provider: none
+    teams:
+      - name: group-c
+        role: developer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
+  - name: group-d-cpo
+    enabled: false
+    service: cpo
+    provider: github
+    teams:
+      - name: group-d
+        role: developer
+      - name: group-a
+        role: viewer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-d-integrator
+    enabled: false
+    service: integrator
+    provider: gitlab
+    teams:
+      - name: group-d
+        role: owner
+      - name: group-a
+        role: viewer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: true
+    requiredChecks: []
+  - name: group-d-frontend
+    enabled: false
+    service: integrator
+    provider: none
+    teams:
+      - name: group-d
+        role: developer
+    approvers: 2
+    aws: false
+    pulumi: false
+    terraform: false
+    harbor: false
+    requiredChecks: []
