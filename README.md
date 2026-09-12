@@ -47,7 +47,7 @@ To successfully run, and configure the Pulumi plugins, you need to set a list of
 - `HARBOR_URL`: the Harbor URL
 - `HARBOR_USERNAME`: the Harbor username
 - `HARBOR_PASSWORD`: the Harbor password
-- `DEX_HARBOR_CLIENT_SECRET`: the client secret in Dex for Harbor
+- `DEX_REGISTRY_CLIENT_SECRET`: the client secret in Dex for Harbor
 
 ---
 
