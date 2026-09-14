@@ -33,11 +33,11 @@ teams:
     members:
       github:
         - stefanhagenauer2510
-        # - kirschner
+        - "2510859012"
         - Amirsiasi
       gitlab:
         - stefanhagenauer2510
-        # - kirschner
+        - "2510859012"
         - Amirsiasi
   - name: group-c
     members:
