@@ -20,25 +20,49 @@ teams:
       gitlab:
         - muhlba91
   - name: group-a
-    enabled: false
     members:
-      github: []
-      gitlab: []
+      github:
+        - "2510859004"
+        - MichaelVesely
+        - MilanVida
+      gitlab:
+        - "2510859004"
+        - MichaelVesely
+        - MilanVida
   - name: group-b
-    enabled: false
     members:
-      github: []
-      gitlab: []
+      github:
+        - stefanhagenauer2510
+        # - kirschner
+        - Amirsiasi
+      gitlab:
+        - stefanhagenauer2510
+        # - kirschner
+        - Amirsiasi
   - name: group-c
-    enabled: false
     members:
-      github: []
-      gitlab: []
+      github:
+        - jprinz96
+        - strawberryTaiquiri
+        - manungerboeck
+        - jonaglatzBGLD
+      gitlab:
+        - jprinz96
+        - orangetaikiri
+        - manungerboeck
+        - jonaglatzBGLD
   - name: group-d
-    enabled: false
     members:
-      github: []
-      gitlab: []
+      github:
+        # - khalifah
+        - curarin
+        - ChristophR7
+        - "2510859003"
+      gitlab:
+        # - khalifah
+        - paul.herzog
+        - ChristophR7
+        - "2510859003"
 repositories:
   - name: test-repository-gh
     service: github-test
@@ -109,7 +133,6 @@ repositories:
       - YAMLLint
       - Kubeconform
   - name: group-a-cpo
-    enabled: false
     service: cpo
     provider: github
     teams:
@@ -124,7 +147,6 @@ repositories:
     harbor: true
     requiredChecks: []
   - name: group-a-integrator
-    enabled: false
     service: integrator
     provider: gitlab
     teams:
@@ -152,7 +174,6 @@ repositories:
     harbor: false
     requiredChecks: []
   - name: group-b-cpo
-    enabled: false
     service: cpo
     provider: github
     teams:
@@ -167,7 +188,6 @@ repositories:
     harbor: true
     requiredChecks: []
   - name: group-b-integrator
-    enabled: false
     service: integrator
     provider: gitlab
     teams:
@@ -195,7 +215,6 @@ repositories:
     harbor: false
     requiredChecks: []
   - name: group-c-cpo
-    enabled: false
     service: cpo
     provider: github
     teams:
@@ -210,7 +229,6 @@ repositories:
     harbor: true
     requiredChecks: []
   - name: group-c-integrator
-    enabled: false
     service: integrator
     provider: gitlab
     teams:
@@ -238,7 +256,6 @@ repositories:
     harbor: false
     requiredChecks: []
   - name: group-d-cpo
-    enabled: false
     service: cpo
     provider: github
     teams:
@@ -253,7 +270,6 @@ repositories:
     harbor: true
     requiredChecks: []
   - name: group-d-integrator
-    enabled: false
     service: integrator
     provider: gitlab
     teams:
