@@ -54,12 +54,12 @@ teams:
   - name: group-d
     members:
       github:
-        # - khalifah
+        - 12Aminakhalifah
         - curarin
         - ChristophR7
         - "2510859003"
       gitlab:
-        # - khalifah
+        - 12Aminakhalifah
         - paul.herzog
         - ChristophR7
         - "2510859003"
