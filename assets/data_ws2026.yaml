@@ -42,11 +42,9 @@ teams:
   - name: group-c
     members:
       github:
-        - jprinz96
         - manungerboeck
         - jonaglatzBGLD
       gitlab:
-        - jprinz96
         - manungerboeck
         - jonaglatzBGLD
   - name: group-d
