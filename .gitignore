@@ -213,3 +213,5 @@ covprofile
 outputs/
 export.json
 gcp-*-key.json
+# mise
+mise.local.toml
