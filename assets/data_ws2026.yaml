@@ -218,7 +218,7 @@ repositories:
         role: developer
       - name: group-b
         role: viewer
-    approvers: 2
+    approvers: 1
     aws: false
     pulumi: false
     terraform: false
@@ -232,7 +232,7 @@ repositories:
         role: owner
       - name: group-b
         role: viewer
-    approvers: 2
+    approvers: 1
     aws: false
     pulumi: false
     terraform: false
