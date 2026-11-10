@@ -154,8 +154,8 @@ github.com/muesli/cancelreader v0.2.2 h1:3I4Kt4BQjOR54NavqnDogx/MIoWBFa0StPA8ELU
 github.com/muesli/cancelreader v0.2.2/go.mod h1:3XuTXfFS2VjM+HTLZY9Ak0l6eUKfijIfMUZ4EgX0QYo=
 github.com/muesli/termenv v0.16.0 h1:S5AlUN9dENB57rsbnkPyfdGuWIlkmzJjbFf0Tf5FWUc=
 github.com/muesli/termenv v0.16.0/go.mod h1:ZRfOIKPFDYQoDFF4Olj7/QJbW60Ol/kL1pU3VfY/Cnk=
-github.com/muhlba91/pulumi-shared-library v0.0.0-20261110074120-27e660c4cc1c h1:lzTWlZaSACJ+IiNif+InPTdLZHfUK4ueWxkYotO1KDs=
-github.com/muhlba91/pulumi-shared-library v0.0.0-20261110074120-27e660c4cc1c/go.mod h1:msgi3bajh3Tq2aJcTJFTpaUyBjXWy6dZuWvyYNyXiGQ=
+github.com/muhlba91/pulumi-shared-library v0.0.0-20261110075042-7df714be5178 h1:vwwVO78/db4rhexUWYLIT5WC5izjnm7c4ZztKhYV8e4=
+github.com/muhlba91/pulumi-shared-library v0.0.0-20261110075042-7df714be5178/go.mod h1:msgi3bajh3Tq2aJcTJFTpaUyBjXWy6dZuWvyYNyXiGQ=
 github.com/opentracing/basictracer-go v1.1.0 h1:Oa1fTSBvAl8pa3U+IJYqrKm0NALwH9OsgwOqDv4xJW0=
 github.com/opentracing/basictracer-go v1.1.0/go.mod h1:V2HZueSJEp879yv285Aap1BS69fQMD+MNP1mRs6mBQc=
 github.com/opentracing/opentracing-go v1.1.0/go.mod h1:UkNAQd3GIcIGf0SeVgPpRdFStlNbqXla1AfSYxPUl2o=
