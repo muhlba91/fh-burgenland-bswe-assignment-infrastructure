@@ -225,6 +225,8 @@ repositories:
     harbor: true
     requiredChecks:
       - Build & Test
+      - Gitleaks
+      - Semgrep
   - name: group-c-integrator
     service: integrator
     provider: gitlab
