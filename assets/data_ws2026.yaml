@@ -227,6 +227,7 @@ repositories:
       - Build & Test
       - Gitleaks
       - Semgrep
+      - Trivy
   - name: group-c-integrator
     service: integrator
     provider: gitlab
