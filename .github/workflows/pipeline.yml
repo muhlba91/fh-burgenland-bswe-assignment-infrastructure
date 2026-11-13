@@ -143,6 +143,7 @@ jobs:
         with:
           command: up
           stack-name: ${{ matrix.stack }}
+          refresh: true
         env:
           GITHUB_TOKEN: "${{ env.GH_PAT_TOKEN }}"
           VAULT_ADDR: "${{ secrets.VAULT_ADDR }}"
