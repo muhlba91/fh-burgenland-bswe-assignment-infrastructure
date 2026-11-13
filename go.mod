@@ -7,7 +7,7 @@ require (
 	github.com/pulumi/pulumi-aws/sdk/v7 v7.54.0
 	github.com/pulumi/pulumi-github/sdk/v6 v6.15.1
 	github.com/pulumi/pulumi-gitlab/sdk/v10 v10.4.1
-	github.com/pulumi/pulumi/sdk/v3 v3.274.1
+	github.com/pulumi/pulumi/sdk/v3 v3.276.0
 	github.com/pulumiverse/pulumi-harbor/sdk/v3 v3.10.21
 	github.com/rs/zerolog v1.35.1
 	gopkg.in/yaml.v3 v3.0.1
@@ -60,7 +60,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kevinburke/ssh_config v1.6.0 // indirect
-	github.com/klauspost/compress v1.20.0 // indirect
+	github.com/klauspost/compress v1.20.2 // indirect
 	github.com/lucasb-eyer/go-colorful v1.4.1 // indirect
 	github.com/mattn/go-colorable v0.1.15 // indirect
 	github.com/mattn/go-isatty v0.0.24 // indirect
