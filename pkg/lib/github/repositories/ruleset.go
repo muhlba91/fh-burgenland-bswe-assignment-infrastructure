@@ -21,7 +21,6 @@ func createRuleset(
 	repository *repository.Config,
 	repo *github.Repository,
 ) error {
-	wipIntegration := false
 	deleteOnDestroy := defaults.GetOrDefault(repository.DeleteOnDestroy, false)
 
 	_, err := libRuleset.Create(
@@ -32,7 +31,6 @@ func createRuleset(
 			Patterns:        []string{libRuleset.DefaultBranchRulesetPattern},
 			ReviewerCount:   repository.Approvers,
 			RequiredChecks:  repository.RequiredChecks,
-			WIPIntegration:  &wipIntegration,
 			DeleteOnDestroy: &deleteOnDestroy,
 		},
 	)
