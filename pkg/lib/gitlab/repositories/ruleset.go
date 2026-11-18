@@ -11,6 +11,14 @@ import (
 	libRuleset "github.com/muhlba91/pulumi-shared-library/pkg/lib/gitlab/ruleset"
 )
 
+//nolint:gochecknoglobals // variables required for ruleset creation
+var (
+	// allowedToMerge defines the access level required to merge into the default branch.
+	allowedToMerge = "developer"
+	// allowedToPush defines the access level required to push directly to the default branch.
+	allowedToPush = "maintainer"
+)
+
 // createRuleset creates a branch ruleset for the given repository based on the provided configuration.
 // ctx: The Pulumi context for resource creation.
 // repository: The configuration for the repository.
@@ -24,9 +32,11 @@ func createRuleset(
 		ctx,
 		fmt.Sprintf("%s-%s", config.Environment, repository.Name),
 		&libRuleset.CreateOptions{
-			Repository:    repo,
-			Branch:        libRuleset.DefaultBranch,
-			ReviewerCount: repository.Approvers,
+			Repository:     repo,
+			Branch:         libRuleset.DefaultBranch,
+			ReviewerCount:  repository.Approvers,
+			AllowedToPush:  &allowedToPush,
+			AllowedToMerge: &allowedToMerge,
 		},
 	)
 	return err
