@@ -141,15 +141,17 @@ jobs:
           role: ${{ secrets.VAULT_ROLE }}
           exportToken: true
           outputToken: true
-          secrets: |
-            github-fh-burgenland-bswe-assignment-infrastructure/data/aws region | AWS_REGION ;
-            github-fh-burgenland-bswe-assignment-infrastructure/data/aws identity_role_arn | AWS_IDENTITY_ROLE_ARN ;
-            github-fh-burgenland-bswe-assignment-infrastructure/data/github token | GH_PAT_TOKEN ;
-            github-fh-burgenland-bswe-assignment-infrastructure/data/gitlab token | GITLAB_TOKEN ;
-            github-fh-burgenland-bswe-assignment-infrastructure/data/registry url | HARBOR_URL ;
-            github-fh-burgenland-bswe-assignment-infrastructure/data/registry username | HARBOR_USERNAME ;
-            github-fh-burgenland-bswe-assignment-infrastructure/data/registry password | HARBOR_PASSWORD ;
-            github-fh-burgenland-bswe-assignment-infrastructure/data/registry dex_client_secret | DEX_REGISTRY_CLIENT_SECRET
+          # login only: the secrets are read by fnox (fnox.toml), the same list as on the developer machines
+
+      - name: Load secrets
+        env:
+          VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
+        run: |
+          fnox ci-redact
+          fnox export --format json \
+            | jq -r '.secrets | to_entries[]
+                | if (.value | test("\n")) then error("multi-line value: \(.key)") else "\(.key)=\(.value)" end' \
+            >> "$GITHUB_ENV"
 
       - uses: pulumi/auth-actions@273044cc19e63ea565285da8edd4e059126a0bdb # v2.1.2
         with:

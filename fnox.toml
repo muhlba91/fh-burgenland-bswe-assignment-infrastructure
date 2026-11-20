@@ -1,0 +1,49 @@
+# Secrets from Vault via fnox. CI: the default profile, the Vault token from the GitHub OIDC login (used by Pulumi's
+# Vault provider). Developer machines: FNOX_PROFILE=dev adds the Pulumi token (account dmuehlbachler-fh-burgenland),
+# GITHUB_TOKEN as in CI and a short-lived Vault token with this repository's CI policy (the `vault` lease); the `aws`
+# lease assumes the repository's AWS CI role from your IAM Identity Center login (`aws sso login --profile ci-assume`),
+# CI assumes it by OIDC (configure-aws-credentials).
+# Run: fnox exec -- pulumi preview --stack ws2026
+
+if_missing = "error"
+
+# the repository's Vault mount; the token from VAULT_TOKEN (CI) or the Vault CLI's token helper
+[providers.vault]
+type = "vault"
+path = "github-fh-burgenland-bswe-assignment-infrastructure"
+credential_command = "vault print token"
+
+[secrets]
+AWS_REGION = { provider = "vault", value = "aws/region" }
+AWS_IDENTITY_ROLE_ARN = { provider = "vault", value = "aws/identity_role_arn" }
+GH_PAT_TOKEN = { provider = "vault", value = "github/token" }
+GITLAB_TOKEN = { provider = "vault", value = "gitlab/token" }
+HARBOR_URL = { provider = "vault", value = "registry/url" }
+HARBOR_USERNAME = { provider = "vault", value = "registry/username" }
+HARBOR_PASSWORD = { provider = "vault", value = "registry/password" }
+DEX_REGISTRY_CLIENT_SECRET = { provider = "vault", value = "registry/dex_client_secret" }
+
+# short-lived AWS credentials of the CI role for fnox exec (not used by fnox export, i.e. not in CI)
+[leases.aws]
+type = "command"
+create_command = "$HOME/.config/fnox/aws-lease.sh"
+duration = "1h"
+
+# developer machines only
+[profiles.dev.secrets]
+PULUMI_ACCESS_TOKEN = { provider = "dev-infrastructure", value = "pulumi-dmuehlbachler-fh-burgenland/token", description = "Pulumi Cloud (dmuehlbachler-fh-burgenland)" }
+# CI maps GH_PAT_TOKEN to GITHUB_TOKEN in the Pulumi steps
+GITHUB_TOKEN = { default = "${GH_PAT_TOKEN}", description = "GitHub token managing the repositories (as in CI)" }
+
+# VAULT_TOKEN for Pulumi's Vault provider: a token with this repository's CI policy (the GitHub repository's name),
+# minted with the machine's token through the token role dev-infrastructure-repo-tokens (orphan, at most 4 hours).
+# fnox reuses it until 5 minutes before it expires; no revoke command: the token expires on its own (and the VM's host
+# token may not revoke by accessor).
+[profiles.dev.leases.vault]
+type = "command"
+duration = "1h"
+create_command = '''
+vault token create -role=dev-infrastructure-repo-tokens -policy=github-fh-burgenland-bswe-assignment-infrastructure \
+  -ttl="${FNOX_LEASE_DURATION}s" -format=json \
+  | jq -c '{credentials: {VAULT_TOKEN: .auth.client_token}, lease_id: .auth.accessor, expires_at: (now + .auth.lease_duration | floor | todate)}'
+'''
