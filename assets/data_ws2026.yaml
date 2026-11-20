@@ -143,7 +143,7 @@ repositories:
     harbor: true
     requiredChecks: []
   - name: group-a-integrator
-    service: integrator
+    service: Integrator
     provider: gitlab
     teams:
       - name: group-a
@@ -184,7 +184,7 @@ repositories:
     harbor: true
     requiredChecks: []
   - name: group-b-integrator
-    service: integrator
+    service: Integrator
     provider: gitlab
     teams:
       - name: group-b
@@ -229,7 +229,7 @@ repositories:
       - Semgrep
       - Trivy
   - name: group-c-integrator
-    service: integrator
+    service: Integrator
     provider: gitlab
     teams:
       - name: group-c
@@ -270,7 +270,7 @@ repositories:
     harbor: true
     requiredChecks: []
   - name: group-d-integrator
-    service: integrator
+    service: Integrator
     provider: gitlab
     teams:
       - name: group-d
