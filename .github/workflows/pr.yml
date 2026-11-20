@@ -155,9 +155,9 @@ jobs:
 
       - uses: pulumi/auth-actions@273044cc19e63ea565285da8edd4e059126a0bdb # v2.1.2
         with:
-          organization: dmuehlbachler-fh-burgenland
+          organization: muhlba91
           requested-token-type: urn:pulumi:token-type:access_token:personal
-          scope: user:dmuehlbachler-fh-burgenland
+          scope: user:muhlba91
 
       - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
         with:

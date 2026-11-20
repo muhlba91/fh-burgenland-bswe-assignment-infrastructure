@@ -34,7 +34,7 @@ pulumi destroy
 
 ## Secrets
 
-[fnox](https://fnox.jdx.dev) loads the secrets from Vault (`fnox.toml`). CI logs in to Vault through GitHub OIDC (repository secrets `VAULT_ADDR`, `VAULT_PATH`, `VAULT_ROLE`; Pulumi's Vault provider uses that token) and assumes the AWS CI role by OIDC. Locally (`FNOX_PROFILE=dev`) fnox adds the Pulumi token (account `dmuehlbachler-fh-burgenland`), `GITHUB_TOKEN`, a short-lived `VAULT_TOKEN` with this repository's CI policy (the `vault` lease) and the same AWS role as CI (the `aws` lease, from your IAM Identity Center login):
+[fnox](https://fnox.jdx.dev) loads the secrets from Vault (`fnox.toml`). CI logs in to Vault through GitHub OIDC (repository secrets `VAULT_ADDR`, `VAULT_PATH`, `VAULT_ROLE`; Pulumi's Vault provider uses that token) and assumes the AWS CI role by OIDC. Locally (`FNOX_PROFILE=dev`) fnox adds the Pulumi token (account `muhlba91`), `GITHUB_TOKEN`, a short-lived `VAULT_TOKEN` with this repository's CI policy (the `vault` lease) and the same AWS role as CI (the `aws` lease, from your IAM Identity Center login):
 
 ```bash
 aws sso login --profile ci-assume   # once per session
