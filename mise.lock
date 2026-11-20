@@ -2,6 +2,29 @@
 
 lockfile_version = 3
 
+[[tools.fnox]]
+version = "1.48.0"
+backend = "packslip:github.com/jdx/fnox"
+specifiers = ["v1.48.0"]
+
+[tools.fnox."platforms.linux-arm64"]
+checksum = "sha256:706edaa5293abb9fc9cd8f40c826222fc2f455433c90c36f6dd83f1526a9ef67"
+url = "https://github.com/jdx/fnox/releases/download/v1.48.0/fnox-aarch64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
+repository_ids = { repository = "1078762196" }
+
+[tools.fnox."platforms.linux-x64"]
+checksum = "sha256:4c8ef00618e4ae659b4c9e1d4efd93961c97ebc7723df149234fe38a9dac62fb"
+url = "https://github.com/jdx/fnox/releases/download/v1.48.0/fnox-x86_64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
+repository_ids = { repository = "1078762196" }
+
+[tools.fnox."platforms.macos-arm64"]
+checksum = "sha256:1b81153805a485072ecbeb14b2b2aaa24a9bfeb467002a7d725cbfc01cbb1811"
+url = "https://github.com/jdx/fnox/releases/download/v1.48.0/fnox-aarch64-apple-darwin.tar.gz"
+signer = "sigstore-oidc:https://github.com/jdx/fnox/.github/workflows/release.yml"
+repository_ids = { repository = "1078762196" }
+
 [[tools.go]]
 version = "1.27.4"
 backend = "core:go"
@@ -42,6 +65,29 @@ url = "https://github.com/golangci/golangci-lint/releases/download/v2.15.0/golan
 url_api = "https://api.github.com/repos/golangci/golangci-lint/releases/assets/647132534"
 provenance = "github-attestations"
 
+[[tools.jq]]
+version = "1.8.2"
+backend = "aqua:jqlang/jq"
+specifiers = ["1.8.2"]
+
+[tools.jq."platforms.linux-arm64"]
+checksum = "sha256:8b85c817833814ddca00a144c33705546355afccf0cf39b188f3cdb48b852309"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.2/jq-linux-arm64"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/453012756"
+provenance = "github-attestations"
+
+[tools.jq."platforms.linux-x64"]
+checksum = "sha256:b1c22172dd303f3be49e935aa56aa48a8b7a46e0bc838b4997d3bb451495870f"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.2/jq-linux-amd64"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/453012752"
+provenance = "github-attestations"
+
+[tools.jq."platforms.macos-arm64"]
+checksum = "sha256:2d75340ba57a4b4b4c8708a21c2dc8e958a48aaa8bba13b27f77f6e4c0eca07e"
+url = "https://github.com/jqlang/jq/releases/download/jq-1.8.2/jq-macos-arm64"
+url_api = "https://api.github.com/repos/jqlang/jq/releases/assets/453012783"
+provenance = "github-attestations"
+
 [[tools.pulumi]]
 version = "3.277.0"
 backend = "aqua:pulumi/pulumi"
@@ -64,3 +110,20 @@ checksum = "sha256:7344d062adc17a10c58cf621330270a50b138ed761ac1d90faf8988992aab
 url = "https://github.com/pulumi/pulumi/releases/download/v3.277.0/pulumi-v3.277.0-darwin-arm64.tar.gz"
 url_api = "https://api.github.com/repos/pulumi/pulumi/releases/assets/762986456"
 provenance = "cosign"
+
+[[tools.vault]]
+version = "2.2.2"
+backend = "aqua:hashicorp/vault"
+specifiers = ["2.2.2"]
+
+[tools.vault."platforms.linux-arm64"]
+checksum = "sha256:78634c8672601ad1ca9b27f24e76c54224d12521c59ece957ab8d23976ddca12"
+url = "https://releases.hashicorp.com/vault/2.2.2/vault_2.2.2_linux_arm64.zip"
+
+[tools.vault."platforms.linux-x64"]
+checksum = "sha256:5700edf139113609962fe371af7d2a53de8ecb720d545dc39b43de204515d3c4"
+url = "https://releases.hashicorp.com/vault/2.2.2/vault_2.2.2_linux_amd64.zip"
+
+[tools.vault."platforms.macos-arm64"]
+checksum = "sha256:75843ff0559dfa4d69bfde073f98caaa22674c27fd80446d092ad2069d7f25f8"
+url = "https://releases.hashicorp.com/vault/2.2.2/vault_2.2.2_darwin_arm64.zip"

@@ -215,3 +215,6 @@ export.json
 gcp-*-key.json
 # mise
 mise.local.toml
+
+# fnox
+fnox.local.toml

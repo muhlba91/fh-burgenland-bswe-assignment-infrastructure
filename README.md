@@ -32,21 +32,16 @@ pulumi destroy
 
 **Attention**: you must set `ALLOW_REPOSITORY_DELETION="true"` as an environment variable to be able to delete repositories!
 
-## Environment Variables
+## Secrets
 
-To successfully run, and configure the Pulumi plugins, you need to set a list of environment variables. Alternatively, refer to the used Pulumi provider's configuration documentation.
+[fnox](https://fnox.jdx.dev) loads the secrets from Vault (`fnox.toml`). CI logs in to Vault through GitHub OIDC (repository secrets `VAULT_ADDR`, `VAULT_PATH`, `VAULT_ROLE`; Pulumi's Vault provider uses that token) and assumes the AWS CI role by OIDC. Locally (`FNOX_PROFILE=dev`) fnox adds the Pulumi token (account `dmuehlbachler-fh-burgenland`), `GITHUB_TOKEN`, a short-lived `VAULT_TOKEN` with this repository's CI policy (the `vault` lease) and the same AWS role as CI (the `aws` lease, from your IAM Identity Center login):
 
-- `AWS_REGION`: the AWS region to use
-- `AWS_ACCESS_KEY_ID`: the AWS secret key
-- `AWS_SECRET_ACCESS_KEY`: the AWS secret access key
-- `GITHUB_TOKEN`: the GitHub token with permissions to manage repositories
-- `PULUMI_ACCESS_TOKEN`: the Pulumi access token
-- `VAULT_ADDR`: the Vault address
-- `VAULT_TOKEN`: the Vault token
-- `HARBOR_URL`: the Harbor URL
-- `HARBOR_USERNAME`: the Harbor username
-- `HARBOR_PASSWORD`: the Harbor password
-- `DEX_REGISTRY_CLIENT_SECRET`: the client secret in Dex for Harbor
+```bash
+aws sso login --profile ci-assume   # once per session
+fnox exec -- pulumi preview --stack ws2026
+```
+
+Local overrides go into `fnox.local.toml` (gitignored).
 
 ---
 
