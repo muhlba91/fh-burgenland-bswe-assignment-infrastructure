@@ -1,5 +1,5 @@
 # Secrets from Vault via fnox. CI: the default profile, the Vault token from the GitHub OIDC login (used by Pulumi's
-# Vault provider). Developer machines: FNOX_PROFILE=dev adds the Pulumi token (account dmuehlbachler-fh-burgenland),
+# Vault provider). Developer machines: FNOX_PROFILE=dev adds the Pulumi token (account muhlba91),
 # GITHUB_TOKEN as in CI and a short-lived Vault token with this repository's CI policy (the `vault` lease); the `aws`
 # lease assumes the repository's AWS CI role from your IAM Identity Center login (`aws sso login --profile ci-assume`),
 # CI assumes it by OIDC (configure-aws-credentials).
@@ -31,7 +31,7 @@ duration = "1h"
 
 # developer machines only
 [profiles.dev.secrets]
-PULUMI_ACCESS_TOKEN = { provider = "dev-infrastructure", value = "pulumi-dmuehlbachler-fh-burgenland/token", description = "Pulumi Cloud (dmuehlbachler-fh-burgenland)" }
+PULUMI_ACCESS_TOKEN = { provider = "dev-infrastructure", value = "pulumi-muhlba91/token", description = "Pulumi Cloud (muhlba91)" }
 # CI maps GH_PAT_TOKEN to GITHUB_TOKEN in the Pulumi steps
 GITHUB_TOKEN = { default = "${GH_PAT_TOKEN}", description = "GitHub token managing the repositories (as in CI)" }
 
