@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"sort"
+	"strings"
 
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -55,6 +56,10 @@ func create(
 		config.Classroom.Tag,
 		config.Environment,
 		repository.Service,
+	}
+	for i, topic := range topics {
+		// GitHub only accepts lowercase topics
+		topics[i] = strings.ToLower(topic)
 	}
 	sort.Strings(topics)
 
