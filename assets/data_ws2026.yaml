@@ -158,13 +158,13 @@ repositories:
     requiredChecks: []
   - name: group-a-frontend
     enabled: false
-    service: integrator
+    service: frontend
     provider: none
     teams:
       - name: group-a
         role: developer
     approvers: 2
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
@@ -199,13 +199,13 @@ repositories:
     requiredChecks: []
   - name: group-b-frontend
     enabled: false
-    service: integrator
+    service: frontend
     provider: none
     teams:
       - name: group-b
         role: developer
     approvers: 2
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
@@ -244,13 +244,13 @@ repositories:
     requiredChecks: []
   - name: group-c-frontend
     enabled: false
-    service: integrator
+    service: frontend
     provider: none
     teams:
       - name: group-c
         role: developer
     approvers: 2
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
@@ -285,13 +285,13 @@ repositories:
     requiredChecks: []
   - name: group-d-frontend
     enabled: false
-    service: integrator
+    service: frontend
     provider: none
     teams:
       - name: group-d
         role: developer
     approvers: 2
-    aws: false
+    aws: true
     pulumi: false
     terraform: false
     harbor: false
