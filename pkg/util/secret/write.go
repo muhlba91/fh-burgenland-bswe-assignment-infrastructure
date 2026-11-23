@@ -77,7 +77,9 @@ func writeGitHub(
 	value pulumi.StringInput,
 ) error {
 	if repository == nil {
-		return fmt.Errorf("[secret]repository %s not found in created GitHub repositories", name)
+		nfErr := fmt.Errorf("repository %s not found in created GitHub repositories", name)
+		log.Err(nfErr).Msgf("[secret][github] error finding repository: %s", name)
+		return nfErr
 	}
 
 	_, ghErr := ghSecret.Create(ctx, &ghSecret.CreateOptions{
@@ -109,7 +111,9 @@ func writeGitlab(
 	masked bool,
 ) error {
 	if repository == nil {
-		return fmt.Errorf("[secret]repository %s not found in created GitLab projects", name)
+		nfErr := fmt.Errorf("repository %s not found in created GitLab projects", name)
+		log.Err(nfErr).Msgf("[secret][gitlab] error finding repository: %s", name)
+		return nfErr
 	}
 
 	trueValue := true
