@@ -10,6 +10,7 @@ import (
 	"github.com/pulumi/pulumi-github/sdk/v6/go/github"
 	"github.com/pulumi/pulumi-gitlab/sdk/v10/go/gitlab"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/rs/zerolog/log"
 )
 
 // Write creates or updates a secret for the specified repository.
@@ -79,11 +80,15 @@ func writeGitHub(
 		return fmt.Errorf("[secret]repository %s not found in created GitHub repositories", name)
 	}
 
-	ghSecret.Create(ctx, &ghSecret.CreateOptions{
+	_, ghErr := ghSecret.Create(ctx, &ghSecret.CreateOptions{
 		Repository: repository,
 		Key:        key,
 		Value:      value,
 	})
+	if ghErr != nil {
+		log.Err(ghErr).Msgf("[secret][github] error creating secret %s for repository: %s", key, name)
+		return ghErr
+	}
 
 	return nil
 }
