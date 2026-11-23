@@ -17,20 +17,21 @@ initialize_repository() {
     repo_name="swm2-$YEAR_IDENTIFIER-group-$1-$2"
 
     echo "[$identifier][$service] checkout"
-    git clone git@github.com:fhburgenland-bswe/$repo_name.git
+    git clone "git@github.com:fhburgenland-bswe/$repo_name.git"
 
-    cd $repo_name
+    (
+        cd "$repo_name" || exit
 
-    echo "[$identifier][$service] create README.md"
-    echo $repo_name > README.md
+        echo "[$identifier][$service] create README.md"
+        echo "$repo_name" > README.md
 
-    echo "[$identifier][$service] push to remote"
-    git add README.md
-    git commit -am "feat: initial commit"
-    git push
+        echo "[$identifier][$service] push to remote"
+        git add README.md
+        git commit -am "feat: initial commit"
+        git push
 
-    echo "[$identifier][$service] finalize"
-    cd ..
+        echo "[$identifier][$service] finalize"
+    )
     echo ""
 }
 
@@ -44,7 +45,7 @@ for service in "${array_services[@]}"; do
 
   for identifier in "${array[@]}"; do
     echo "[$identifier][$service] initializing repository..."
-    initialize_repository $identifier $service
+    initialize_repository "$identifier" "$service"
   done
 done
 
@@ -58,6 +59,6 @@ for service in "${array_group_services[@]}"; do
 
   for identifier in "${array_groups[@]}"; do
     echo "[$identifier][$service] initializing repository..."
-    initialize_repository $identifier $service
+    initialize_repository "$identifier" "$service"
   done
 done

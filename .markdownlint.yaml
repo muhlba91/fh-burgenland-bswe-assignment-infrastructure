@@ -1,0 +1,4 @@
+default: true
+
+# one paragraph per line, without hard wraps (DOC-06)
+MD013: false

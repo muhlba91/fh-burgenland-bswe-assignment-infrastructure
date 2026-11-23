@@ -18,17 +18,17 @@ delete_artifacts() {
 
   page=1
   while true; do
-    artifact_exists=$(gh api repos/fhburgenland-bswe/$repo_name/actions/artifacts?per_page=100\&page=$page | jq -r '.artifacts[]')
-    artifacts=$(gh api repos/fhburgenland-bswe/$repo_name/actions/artifacts?per_page=100\&page=$page | jq -r '.artifacts[].id')
+    artifact_exists=$(gh api "repos/fhburgenland-bswe/$repo_name/actions/artifacts?per_page=100&page=$page" | jq -r '.artifacts[]')
+    artifacts=$(gh api "repos/fhburgenland-bswe/$repo_name/actions/artifacts?per_page=100&page=$page" | jq -r '.artifacts[].id')
     if [[ -z "$artifact_exists" ]]; then
       echo "[$identifier][$service] no more artifacts found"
       break
     fi
 
     for artifact_id in $artifacts; do
-      artifact_name=$(gh api repos/fhburgenland-bswe/$repo_name/actions/artifacts/$artifact_id | jq -r '.name')
+      artifact_name=$(gh api "repos/fhburgenland-bswe/$repo_name/actions/artifacts/$artifact_id" | jq -r '.name')
       echo "[$identifier][$service] deleting artifact $artifact_name ($artifact_id)..."
-      gh api repos/fhburgenland-bswe/$repo_name/actions/artifacts/$artifact_id -X DELETE >& /dev/null
+      gh api "repos/fhburgenland-bswe/$repo_name/actions/artifacts/$artifact_id" -X DELETE >& /dev/null
     done
 
     page=$((page+1))
@@ -48,7 +48,7 @@ for service in "${array_services[@]}"; do
 
   for identifier in "${array[@]}"; do
     echo "[$identifier][$service] deleting artifacts..."
-    delete_artifacts $identifier $service
+    delete_artifacts "$identifier" "$service"
   done
 done
 
@@ -62,6 +62,6 @@ for service in "${array_group_services[@]}"; do
 
   for identifier in "${array_groups[@]}"; do
     echo "[$identifier][$service] checking for artifacts..."
-    delete_artifacts $identifier $service
+    delete_artifacts "$identifier" "$service"
   done
 done
