@@ -113,13 +113,17 @@ func writeGitlab(
 	}
 
 	trueValue := true
-	glSecret.Create(ctx, &glSecret.CreateOptions{
+	_, glErr := glSecret.Create(ctx, &glSecret.CreateOptions{
 		Repository:               repository,
 		Key:                      key,
 		Value:                    value,
 		Masked:                   &masked,
 		DisableVariableExpansion: &trueValue,
 	})
+	if glErr != nil {
+		log.Err(glErr).Msgf("[secret][gitlab] error creating secret %s for project: %s", key, name)
+		return glErr
+	}
 
 	return nil
 }
