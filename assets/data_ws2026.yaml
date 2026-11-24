@@ -228,6 +228,7 @@ repositories:
       - Gitleaks
       - Semgrep
       - Trivy
+      - Hadolint
   - name: group-c-integrator
     service: Integrator
     provider: gitlab
