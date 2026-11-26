@@ -141,7 +141,9 @@ repositories:
     pulumi: false
     terraform: false
     harbor: true
-    requiredChecks: []
+    requiredChecks:
+  - "Test (25)"
+  - "Conform"
   - name: group-a-integrator
     service: Integrator
     provider: gitlab
