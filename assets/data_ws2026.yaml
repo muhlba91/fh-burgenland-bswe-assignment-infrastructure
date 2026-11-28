@@ -144,6 +144,7 @@ repositories:
     requiredChecks:
       - "Test (25)"
       - Conform
+      - "CodeQL / Analyze (Java)"
   - name: group-a-integrator
     service: Integrator
     provider: gitlab
